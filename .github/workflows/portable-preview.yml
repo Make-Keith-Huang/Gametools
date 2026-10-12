@@ -1,0 +1,81 @@
+name: Portable preview release
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [release/preview-0.1.0.17]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: portable-preview-0.1.0.17
+  cancel-in-progress: false
+
+jobs:
+  release:
+    if: github.repository == 'Make-Keith-Huang/Gametools' && github.ref == 'refs/heads/release/preview-0.1.0.17'
+    runs-on: windows-latest
+    timeout-minutes: 40
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Verify source
+        shell: pwsh
+        run: ./scripts/verify.ps1 -DataRoot $env:GITHUB_WORKSPACE
+      - name: Build and verify portable package
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $sdk = Get-ChildItem 'C:/Program Files (x86)/Windows Kits/10/bin' -Directory |
+            Where-Object { $_.Name -match '^10\.0\.\d+\.0$' -and (Test-Path (Join-Path $_.FullName 'x64/makeappx.exe')) } |
+            Sort-Object { [version]$_.Name } -Descending | Select-Object -First 1
+          if (-not $sdk) { throw 'Windows SDK MakeAppx is missing.' }
+          ./scripts/package.ps1 -Version 0.1.0.17 -SdkDirectory (Join-Path $sdk.FullName 'x64') -DataRoot $env:GITHUB_WORKSPACE
+          $runs = @(Get-ChildItem artifacts/release -Directory)
+          if ($runs.Count -ne 1) { throw 'Expected one fresh package directory.' }
+          $run = $runs[0].FullName
+          ./scripts/package-portable.ps1 -RunDirectory $run
+          $hash = Get-Content (Join-Path $run 'portable-hash.json') -Raw | ConvertFrom-Json
+          $zip = Join-Path $run $hash.file
+          $unpacked = Join-Path $env:GITHUB_WORKSPACE 'portable-smoke'
+          Expand-Archive -LiteralPath $zip -DestinationPath $unpacked
+          & pwsh -NoProfile -File scripts/test-app-idle.ps1 -Mode Smoke -DataRoot $env:GITHUB_WORKSPACE -ApplicationPath (Join-Path $unpacked 'app/GameLingoAI.App.exe')
+          if ($LASTEXITCODE -ne 0) { throw 'Packaged application smoke failed.' }
+          if ((Get-FileHash -LiteralPath $zip).Hash -ne $hash.sha256) { throw 'Archive changed after verification.' }
+          "PREVIEW_RUN=$run" >> $env:GITHUB_ENV
+      - name: Publish verified preview assets
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $PSNativeCommandUseErrorActionPreference = $true
+          $run = $env:PREVIEW_RUN
+          $hashPath = Join-Path $run 'portable-hash.json'
+          $hash = Get-Content $hashPath -Raw | ConvertFrom-Json
+          $zip = Join-Path $run $hash.file
+          $tag = 'v0.1.0.17-preview.1'
+          # Creation fails rather than replacing an existing release or its assets.
+          gh release create $tag $zip $hashPath --target $env:GITHUB_SHA --draft --prerelease --latest=false --title 'GameLingoAI 0.1.0.17 — Windows x64 免安装预发布版' --notes-file packaging/PREVIEW-RELEASE.md
+          $release = gh api "repos/$env:GH_REPO/releases/tags/$tag" | ConvertFrom-Json
+          $assets = @($release.assets | Where-Object name -eq $hash.file)
+          if ($assets.Count -ne 1 -or $assets[0].size -ne $hash.bytes -or $assets[0].digest -ne "sha256:$($hash.sha256.ToLowerInvariant())") {
+            throw 'Uploaded asset verification failed; leave the release as a draft.'
+          }
+          gh release edit $tag --draft=false --prerelease --latest=false
+      - name: Keep bounded verification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: portable-preview-evidence
+          retention-days: 7
+          path: |
+            reports/default-tests/tests.trx
+            reports/quality/*.json
+            reports/app-idle/*/result.json
+            artifacts/release/*/portable-hash.json
+          if-no-files-found: ignore
