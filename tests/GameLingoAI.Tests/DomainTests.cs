@@ -36,7 +36,7 @@ public sealed class DomainTests
         AssertThrows<ArgumentException>(() => _ = new PipelineMetadata(
             SessionId.New(),
             new SequenceNumber(0),
-            DateTimeOffset.Now,
+            DateTimeOffset.UnixEpoch.ToOffset(TimeSpan.FromHours(8)),
             CorrelationId.New()));
         AssertThrows<OverflowException>(() => new SequenceNumber(long.MaxValue).Next());
     }
