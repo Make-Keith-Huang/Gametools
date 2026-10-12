@@ -7,7 +7,7 @@ $Destination = [IO.Path]::GetFullPath($Destination)
 if (Test-Path -LiteralPath $Destination) { throw 'Refuse to overwrite an existing source archive.' }
 $directories = @('src','tests','tools','scripts','packaging','docs','prompts','.github')
 $rootFiles = @('LICENSE','README.md','AGENTS.md','ARCHITECTURE.md','CODING_RULES.md','DATABASE.md',
-    'PRODUCT_REQUIREMENTS.md','ROADMAP.md','TASKS.md','TEST_PLAN.md','.editorconfig','.gitignore',
+    'PRODUCT_REQUIREMENTS.md','ROADMAP.md','TASKS.md','TEST_PLAN.md','.editorconfig','.gitignore','.gitattributes',
     'Directory.Build.props','Directory.Packages.props','GameLingoAI.sln','global.json')
 $files = [Collections.Generic.List[object]]::new()
 foreach ($name in $rootFiles) { $files.Add((Get-Item -LiteralPath (Join-Path $root $name))) }

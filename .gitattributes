@@ -1,0 +1,2 @@
+# Keep checkouts consistent with .editorconfig, including Windows Git defaults.
+* text=auto eol=lf
