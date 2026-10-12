@@ -1,6 +1,6 @@
 # GameLingoAI Codex DevKit
 
-开发试用版，尚未完成正式发布验收。中文操作说明见[使用指南](docs/USER_GUIDE.md)，当前包和验收限制见[发布审查](docs/RELEASE_AUDIT.md)。源码采用 [MIT](LICENSE)；第三方组件及模型不因本项目许可证而改变其原有许可。不要将本地模型、数据库、密钥或构建缓存提交到 GitHub。
+开发试用版，尚未完成正式发布验收。中文操作说明见[使用指南](docs/USER_GUIDE.md)，当前包和验收限制见[发布审查](docs/RELEASE_AUDIT.md)。源码采用 [MIT](LICENSE)；第三方组件及模型不因本项目许可证而改变其原有许可。
 
 GameLingoAI is a Windows desktop companion that captures a user-selected game window, recognizes subtitle text, translates it with a configurable provider, and renders the result in a transparent click-through overlay.
 
