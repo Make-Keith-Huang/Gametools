@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "component": "Paddle/PaddleSharp and source-declared CPU dependencies",
+  "version": "3.3.1; runtime NuGet 3.3.1.70",
+  "observedRuntimeVersion": "version: 3.3.1; commit: 7688495; branch: HEAD",
+  "sourceCommit": "Paddle 7688495538f4d6c1893f084dd238a402e8f68ab6; PaddleSharp a8758394707c6a0b489116e7edc57e657a18e599",
+  "evidence": "Root and submodule licenses from fixed Paddle source commits used by documented upstream workflow. Dependency set is source-declared, not a linker-map attestation of each compiled binary.",
+  "textNormalization": "CRLF to LF; add a final LF when absent",
+  "nativeFiles": {
+    "paddle_inference_c.dll": "8BB49CA1A503245211906DF34906DDDC96372B2F65DB5E95DD6980A83C05A018",
+    "phi.dll": "EFCFCC8879C3E9444D2C522F7066E30A449C06F3E7F833CE126D5178CA49B71B",
+    "common.dll": "E798A1F28BC32E90E224E84B172FA0CE03AC830099315F6B880FE412ED2D7F06"
+  },
+  "notices": [
+    {
+      "source": "https://raw.githubusercontent.com/PaddlePaddle/Paddle/7688495538f4d6c1893f084dd238a402e8f68ab6/LICENSE",
+      "file": "paddle-3.3.1-LICENSE.txt",
+      "bytes": 11438,
+      "sha256": "FF6311C56C1B22C9209C96CC8AFC16DA91C24EE55A15E14EBC46FE1960DBD856"
+    },
+    {
+      "source": "https://raw.githubusercontent.com/sdcb/PaddleSharp/a8758394707c6a0b489116e7edc57e657a18e599/LICENSE",
+      "file": "paddlesharp-a875839-LICENSE.txt",
+      "bytes": 11357,
+      "sha256": "C71D239DF91726FC519C6EB72D318EC65820627232B2F796219E87DCF35D0AB4"
+    },
+    {
+      "source": "https://raw.githubusercontent.com/protocolbuffers/protobuf/f0dc78d7e6e331b8c6bb2d5283e06aa26883ca7c/LICENSE",
+      "file": "paddle-protobuf-f0dc78d-LICENSE.txt",
+      "bytes": 1732,
+      "sha256": "6E5E117324AFD944DCF67F36CF329843BC1A92229A8CD9BB573D7A83130FEA7D"
+    },
+    {
+      "source": "https://raw.githubusercontent.com/gflags/gflags/e171aa2d15ed9eb17054558e0b3a6a413bb01067/COPYING.txt",
+      "file": "paddle-gflags-e171aa2-LICENSE.txt",
+      "bytes": 1479,
+      "sha256": "90D1F3701813C3CD65EEE2DC736746FE46B465918F3F7D6D31463A2018B33FA5"
+    },
+    {
+      "source": "https://raw.githubusercontent.com/progschj/ThreadPool/9a42ec1329f259a5f4881a291db1dcb8f2ad9040/COPYING",
+      "file": "paddle-threadpool-9a42ec1-LICENSE.txt",
+      "bytes": 881,
+      "sha256": "8AFBC5160151ECC1FC27DCE6CB03E4AF8FB1033D59848107CE7561161242B0C7"
+    },
+    {
+      "source": "https://raw.githubusercontent.com/dmlc/dlpack/84d107bf416c6bab9ae68ad285876600d230490d/LICENSE",
+      "file": "paddle-dlpack-84d107b-LICENSE.txt",
+      "bytes": 11345,
+      "sha256": "3E8F6BC39276A586D60C8C5AAECE2FF989262181CF2B3D2A128DB58F97A9300C"
+    },
+    {
+      "source": "https://raw.githubusercontent.com/Cyan4973/xxHash/7cc9639699f64b750c0b82333dced9ea77e8436e/LICENSE",
+      "file": "paddle-xxhash-7cc9639-LICENSE.txt",
+      "bytes": 1314,
+      "sha256": "86EC6953794503942B70FCD4F35B565D44F63F703B7037CE44DAD965C4AAAE91"
+    },
+    {
+      "source": "https://raw.githubusercontent.com/JuliaStrings/utf8proc/3203baa7374d67132384e2830b2183c92351bffc/LICENSE.md",
+      "file": "paddle-utf8proc-3203baa-LICENSE.txt",
+      "bytes": 5125,
+      "sha256": "FBC720FCC90FB44396985646F67E4D19BE03E0C0539F7138ED9DC6EFBA49DC49"
+    },
+    {
+      "source": "https://raw.githubusercontent.com/nlohmann/json/199dea11b17c533721b26249e2dcaee6ca1d51d3/LICENSE.MIT",
+      "file": "paddle-json-199dea1-LICENSE.txt",
+      "bytes": 1076,
+      "sha256": "86B998C792894CCB911A1CB7994F7A9652894E7A094C0B5E45BE2F553F45CF14"
+    },
+    {
+      "source": "https://raw.githubusercontent.com/jbeder/yaml-cpp/1d8ca1f35eb3a9c9142462b28282a848e5d29a91/LICENSE",
+      "file": "paddle-yaml-1d8ca1f-LICENSE.txt",
+      "bytes": 1061,
+      "sha256": "AA6FCC27BE034E41E21DD832F9175BFE694A48491D9E14FF0FA278E19AD14F1B"
+    },
+    {
+      "source": "https://raw.githubusercontent.com/baidu-research/warp-ctc/bdc2b4550453e0ef2d3b5190f9c6103a84eff184/LICENSE",
+      "file": "paddle-warpctc-bdc2b45-LICENSE.txt",
+      "bytes": 11408,
+      "sha256": "EED59EFB1855B4BD0E33B9B3326DFA3CCC9AD8020DB3C9D057F38594BDE6850B"
+    },
+    {
+      "source": "https://raw.githubusercontent.com/PaddlePaddle/warp-transducer/7ea6bfe748779c245a0fcaa5dd9383826273eff2/LICENSE",
+      "file": "paddle-warprnnt-7ea6bfe-LICENSE.txt",
+      "bytes": 11350,
+      "sha256": "FAB7B4805769F920D3061013453F90D77ECBFFCB1E83BD63E896FB788D4EA966"
+    },
+    {
+      "source": "https://raw.githubusercontent.com/libuv/libuv/2e7c07f4d10c1b391a7138471c49f4aae3c47d8d/LICENSE",
+      "file": "paddle-libuv-2e7c07f-LICENSE.txt",
+      "bytes": 1079,
+      "sha256": "16DE0C32B265CB7D46A6D3BD614F259DD4D693A5E26B3407B04AAE8D73041F0C"
+    },
+    {
+      "file": "paddle-glog-96a2f23-LICENSE.txt",
+      "sha256": "0FC497129C5C69FF6F22DA6933C7E4AAEF082FDE8437FD57680C2780100772A4",
+      "source": "https://raw.githubusercontent.com/google/glog/96a2f23dca4cc7180821ca5f32e526314395d26a/COPYING",
+      "bytes": 3215
+    },
+    {
+      "file": "paddle-eigen-f612df2-MPL2-LICENSE.txt",
+      "sha256": "FAB3DD6BDAB226F1C08630B1DD917E11FCB4EC5E1E020E2C16F83A0A13863E85",
+      "source": "https://gitlab.com/libeigen/eigen/-/raw/f612df273689a19d25b45ca4f8269463207c4fee/COPYING.MPL2",
+      "bytes": 16726
+    },
+    {
+      "file": "paddle-eigen-f612df2-BSD-LICENSE.txt",
+      "sha256": "51928DCE36213C5333BA3172E847D735D4C6E9B7FF2722A326C49067155B82EB",
+      "source": "https://gitlab.com/libeigen/eigen/-/raw/f612df273689a19d25b45ca4f8269463207c4fee/COPYING.BSD",
+      "bytes": 1517
+    },
+    {
+      "file": "paddle-zlib-51b7f2a-LICENSE.txt",
+      "sha256": "845EFC77857D485D91FB3E0B884AAA929368C717AE8186B66FE1ED2495753243",
+      "source": "https://raw.githubusercontent.com/madler/zlib/51b7f2abdade71cd9bb0e7a373ef2610ec6f9daf/LICENSE",
+      "bytes": 1002
+    }
+  ],
+  "remainingNativeAttributionComplete": false,
+  "unresolved": [
+    "Exact native build artifact and any dependency patches/source-availability obligations remain to be checked.",
+    "dirent/LAPACK/pocketfft/Crypto++ source notices are in paddle-extra; exact build and binary inclusion remain unverified.",
+    "Paddle2ONNX static protobuf is independent and must not be assigned Paddle's protobuf version without evidence."
+  ]
+}

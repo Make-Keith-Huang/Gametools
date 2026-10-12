@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "component": "oneDNN",
+  "version": "3.6.2",
+  "sourceCommit": "28d696724426b943e2f4a0e607f90cdc19aedaf6",
+  "evidence": "Commit/version reported by mkldnn.dll PE metadata; license texts from that upstream source commit, not a reproducible binary-build attestation.",
+  "textNormalization": "CRLF to LF; add a final LF when absent",
+  "nativeFiles": {
+    "mkldnn.dll": "22F8AADB0D79D3B33383A64EA1D81A3789F69EDAFA4E93511CDDF475E75FDF2F"
+  },
+  "notices": [
+    {
+      "file": "onednn-3.6.2-LICENSE.txt",
+      "bytes": 11607,
+      "sha256": "9DAD27256276BB4FCE6725C162EF619B5AA2E8ABC8F341A4DAB0B870AAD55664",
+      "source": "https://raw.githubusercontent.com/uxlfoundation/oneDNN/28d696724426b943e2f4a0e607f90cdc19aedaf6/LICENSE"
+    },
+    {
+      "file": "onednn-3.6.2-THIRD-PARTY-PROGRAMS.txt",
+      "bytes": 43895,
+      "sha256": "09E0DC933FB800311BF653CD849531C54CE43F1FBE4AACD0D20F644E7DFE220B",
+      "source": "https://raw.githubusercontent.com/uxlfoundation/oneDNN/28d696724426b943e2f4a0e607f90cdc19aedaf6/THIRD-PARTY-PROGRAMS"
+    }
+  ],
+  "remainingNativeAttributionComplete": false
+}

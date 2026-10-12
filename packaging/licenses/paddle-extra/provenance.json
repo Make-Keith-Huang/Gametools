@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "component": "Paddle additional source-declared dependencies",
+  "version": "Paddle 3.3.1",
+  "evidence": "dirent/LAPACK versions from pinned CMake; Crypto++/pocketfft from pinned gitlinks. Pocketfft retrieved from maintainer GitHub fork at the same commit. Notices do not establish precise static inclusion or provenance of LAPACK binary archive.",
+  "nativeFiles": {
+    "paddle_inference_c.dll": "8BB49CA1A503245211906DF34906DDDC96372B2F65DB5E95DD6980A83C05A018",
+    "phi.dll": "EFCFCC8879C3E9444D2C522F7066E30A449C06F3E7F833CE126D5178CA49B71B",
+    "common.dll": "E798A1F28BC32E90E224E84B172FA0CE03AC830099315F6B880FE412ED2D7F06"
+  },
+  "textNormalization": "CRLF to LF; final LF",
+  "notices": [
+    {
+      "bytes": 1081,
+      "sourceCommit": "65a5551059e30a8d5072356eafaf9b31cc63980a",
+      "source": "https://raw.githubusercontent.com/tronkko/dirent/65a5551059e30a8d5072356eafaf9b31cc63980a/LICENSE",
+      "file": "paddle-dirent-1.23.2-LICENSE.txt",
+      "sha256": "A413ACDD9D43CFA6761CC6599DFF2DC43D90CF572F7A9D4D948B1FD40E727DE7"
+    },
+    {
+      "bytes": 2266,
+      "sourceCommit": "aa631b4b4bd13f6ae2dbab9ae9da209e1e05b0fc",
+      "source": "https://raw.githubusercontent.com/Reference-LAPACK/lapack/aa631b4b4bd13f6ae2dbab9ae9da209e1e05b0fc/LICENSE",
+      "file": "paddle-lapack-3.10.0-LICENSE.txt",
+      "sha256": "66246B7D3E6736AEA46E63FD5E087659474D07EDFE2F9B051D085D9B42AAAC61"
+    },
+    {
+      "bytes": 3836,
+      "sourceCommit": "9dcc26c58213abb8351fbb1b2a7a1d2c667366e4",
+      "source": "https://raw.githubusercontent.com/weidai11/cryptopp/9dcc26c58213abb8351fbb1b2a7a1d2c667366e4/License.txt",
+      "file": "paddle-cryptopp-9dcc26c-LICENSE.txt",
+      "sha256": "B690623F25DF14FA80580241D7E5590E3EF04D23E1D845878578239FAA1EA972"
+    },
+    {
+      "file": "paddle-pocketfft-ea778e3-LICENSE.txt",
+      "sha256": "A85CA13FDF90160B64A0698215868C13B74D835AD0A4E2BA44713B8C5058A056",
+      "bytes": 1498,
+      "source": "https://raw.githubusercontent.com/mreineck/pocketfft/ea778e37710c07723435b1be58235996d1d43a5a/LICENSE.md"
+    }
+  ],
+  "remainingNativeAttributionComplete": false
+}

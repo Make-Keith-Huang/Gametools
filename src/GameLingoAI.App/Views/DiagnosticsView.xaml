@@ -1,0 +1,55 @@
+<UserControl x:Class="GameLingoAI.App.Views.DiagnosticsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+  <UserControl.Resources>
+    <sys:String x:Key="RefreshLabel">Refresh local diagnostics</sys:String>
+    <sys:String x:Key="MetricsLabel">Aggregate metrics (JSON)</sys:String>
+    <sys:String x:Key="EventsLabel">Recent sanitized events (JSON)</sys:String>
+    <sys:String x:Key="PreviewLabel">Prepare support bundle preview</sys:String>
+    <sys:String x:Key="PreviewContentsLabel">Exact support bundle entries and contents</sys:String>
+    <sys:String x:Key="PathLabel">New local ZIP path (absolute path; existing files are never overwritten)</sys:String>
+    <sys:String x:Key="ConsentLabel">I reviewed this preview and approve saving these contents to the selected local file.</sys:String>
+    <sys:String x:Key="ExportLabel">Export reviewed support bundle</sys:String>
+    <sys:String x:Key="CancelLabel">Cancel current diagnostics operation</sys:String>
+    <sys:String x:Key="SavedLabel">Support bundle saved locally. Nothing was uploaded.</sys:String>
+    <sys:String x:Key="PrivacyNote">Local only. No screenshots, subtitle text, credentials, URLs or history. CPU is cumulative milliseconds; stage p50/p95 use the latest 256 samples. Null resource values mean unavailable. Refresh does not export or upload anything.</sys:String>
+  </UserControl.Resources>
+  <StackPanel KeyboardNavigation.TabNavigation="Continue">
+    <TextBlock Text="{StaticResource PrivacyNote}" TextWrapping="Wrap" Margin="0,0,0,8" />
+    <Button Command="{Binding RefreshCommand}" Content="{StaticResource RefreshLabel}"
+            AutomationProperties.Name="{StaticResource RefreshLabel}" />
+    <TextBlock Text="{StaticResource MetricsLabel}" Margin="0,12,0,4" />
+    <TextBox Text="{Binding MetricsJson, Mode=OneWay}" IsReadOnly="True" AcceptsReturn="True"
+             TextWrapping="Wrap" Height="220" VerticalScrollBarVisibility="Auto"
+             AutomationProperties.Name="{StaticResource MetricsLabel}" />
+    <TextBlock Text="{StaticResource EventsLabel}" Margin="0,12,0,4" />
+    <TextBox Text="{Binding EventsJson, Mode=OneWay}" IsReadOnly="True" AcceptsReturn="True"
+             TextWrapping="Wrap" Height="180" VerticalScrollBarVisibility="Auto"
+             AutomationProperties.Name="{StaticResource EventsLabel}" />
+    <Button Margin="0,16,0,4" Content="{StaticResource PreviewLabel}" Command="{Binding PreviewCommand}" />
+    <TextBox Text="{Binding PreviewText, Mode=OneWay}" IsReadOnly="True" AcceptsReturn="True"
+             TextWrapping="Wrap" Height="240" VerticalScrollBarVisibility="Auto"
+             AutomationProperties.Name="{StaticResource PreviewContentsLabel}" />
+    <TextBlock Text="{StaticResource PathLabel}" TextWrapping="Wrap" Margin="0,8,0,4" />
+    <TextBox Text="{Binding ExportPath, UpdateSourceTrigger=PropertyChanged}" MaxLength="1024"
+             AutomationProperties.Name="{StaticResource PathLabel}" />
+    <CheckBox IsChecked="{Binding Consent}" Margin="0,8">
+      <TextBlock Text="{StaticResource ConsentLabel}" TextWrapping="Wrap" />
+    </CheckBox>
+    <Button Content="{StaticResource ExportLabel}" Command="{Binding ExportCommand}" />
+    <Button Margin="0,8,0,0" Content="{StaticResource CancelLabel}" Command="{Binding CancelCommand}" />
+    <TextBlock Text="{StaticResource SavedLabel}" TextWrapping="Wrap" Margin="0,8,0,0">
+      <TextBlock.Style>
+        <Style TargetType="TextBlock">
+          <Setter Property="Visibility" Value="Collapsed" />
+          <Style.Triggers>
+            <DataTrigger Binding="{Binding ExportSucceeded}" Value="True">
+              <Setter Property="Visibility" Value="Visible" />
+            </DataTrigger>
+          </Style.Triggers>
+        </Style>
+      </TextBlock.Style>
+    </TextBlock>
+  </StackPanel>
+</UserControl>

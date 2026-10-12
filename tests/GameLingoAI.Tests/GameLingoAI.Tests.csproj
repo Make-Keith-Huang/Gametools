@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0-windows10.0.18362.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <GenerateProgramFile>false</GenerateProgramFile>
+    <RunSettingsFile>$(MSBuildThisFileDirectory)..\default.runsettings</RunSettingsFile>
+    <ApplicationManifest>..\..\src\GameLingoAI.App\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="../fixtures/preprocessing/outlined-subtitle.txt" Link="fixtures/preprocessing/outlined-subtitle.txt" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="../../packaging/model-manifest.json" Link="packaging/model-manifest.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="../../packaging/AppxManifest.xml" Link="packaging/AppxManifest.xml" CopyToOutputDirectory="PreserveNewest" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" PrivateAssets="all" />
+    <PackageReference Include="xunit" PrivateAssets="all" />
+    <PackageReference Include="xunit.runner.visualstudio" PrivateAssets="all" />
+    <PackageReference Include="coverlet.collector" PrivateAssets="all" />
+    <RuntimeHostConfigurationOption Include="Switch.System.Windows.DoNotScaleForDpiChanges" Value="false" />
+    <ProjectReference Include="..\..\src\GameLingoAI.App\GameLingoAI.App.csproj" />
+    <ProjectReference Include="..\..\src\GameLingoAI.Core\GameLingoAI.Core.csproj" />
+    <ProjectReference Include="..\..\src\GameLingoAI.Infrastructure\GameLingoAI.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\tools\GameLingoAI.QualityHarness\GameLingoAI.QualityHarness.csproj" />
+  </ItemGroup>
+</Project>

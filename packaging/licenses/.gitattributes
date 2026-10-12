@@ -1,0 +1,3 @@
+# Notice hashes are computed from LF-normalized text, including on Windows checkouts.
+*.txt text eol=lf
+*.json text eol=lf

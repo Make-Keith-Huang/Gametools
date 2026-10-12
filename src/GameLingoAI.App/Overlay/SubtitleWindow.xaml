@@ -1,0 +1,21 @@
+<Window x:Class="GameLingoAI.App.Overlay.SubtitleWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:GameLingoAI.App.Overlay"
+        Title="GameLingoAI subtitles" WindowStyle="None" ResizeMode="NoResize"
+        AllowsTransparency="True" Background="Transparent" ShowInTaskbar="False"
+        ShowActivated="False" Focusable="False" Topmost="True"
+        Width="600" Height="160">
+  <Grid>
+    <local:SubtitleRenderer x:Name="Renderer" IsHitTestVisible="False" />
+    <Grid x:Name="EditHandles" Visibility="Collapsed">
+      <Border BorderBrush="DeepSkyBlue" BorderThickness="2" CornerRadius="8" IsHitTestVisible="False" />
+      <Thumb x:Name="MoveHandle" Height="20" VerticalAlignment="Top" Cursor="SizeAll"
+             Background="DeepSkyBlue" Opacity="0.8" AutomationProperties.Name="Drag subtitle layout" />
+      <Thumb x:Name="WidthHandle" Width="20" Height="20" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+             Cursor="SizeWE" Background="DeepSkyBlue" AutomationProperties.Name="Resize subtitle width" />
+      <Button x:Name="DoneButton" Content="Done" HorizontalAlignment="Right" VerticalAlignment="Top"
+              AutomationProperties.Name="Finish layout edit and restore click-through" />
+    </Grid>
+  </Grid>
+</Window>

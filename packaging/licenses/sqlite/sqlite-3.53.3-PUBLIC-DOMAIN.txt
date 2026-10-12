@@ -1,0 +1,25 @@
+SQLite 3.53.3 — upstream public-domain attribution
+
+The SQLite authors dedicate the deliverable SQLite library code to the public
+domain. This statement concerns SQLite itself, not the SQLitePCLRaw wrapper,
+which has separate Apache-2.0 terms.
+
+Official statement: https://sqlite.org/copyright.html
+Source archive: https://www.sqlite.org/2026/sqlite-amalgamation-3530300.zip
+Archive SHA-256: 646421E12AAC110282EF8CC68F1A62D4BB15FC7B8F09DA0B53E29EE690500431
+Source ID returned by the packaged library and matched to sqlite3.h:
+2026-06-26 20:14:12 d4c0e51e4aeb96955b99185ab9cde75c339e2c29c3f3f12428d364a10d782c62
+
+The source header's original dedication follows:
+
+2001-09-15
+
+The author disclaims copyright to this source code.  In place of
+a legal notice, here is a blessing:
+
+   May you do good and not evil.
+   May you find forgiveness for yourself and forgive others.
+   May you share freely, never taking more than you give.
+
+Version/source-ID matching is not a reproducible-build attestation. No
+Warranty of Title has been purchased or represented by GameLingoAI.

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+  <RunConfiguration>
+    <TestCaseFilter>Suite=Platform</TestCaseFilter>
+    <MaxCpuCount>1</MaxCpuCount>
+    <TreatNoTestsAsError>true</TreatNoTestsAsError>
+    <EnvironmentVariables>
+      <GAMELINGOAI_RUN_PLATFORM_TESTS>1</GAMELINGOAI_RUN_PLATFORM_TESTS>
+    </EnvironmentVariables>
+  </RunConfiguration>
+</RunSettings>

@@ -1,0 +1,42 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameLingoAI.Core", "src\GameLingoAI.Core\GameLingoAI.Core.csproj", "{4184A0B4-F8A7-4E0A-9804-B23008255D31}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameLingoAI.Infrastructure", "src\GameLingoAI.Infrastructure\GameLingoAI.Infrastructure.csproj", "{8EA52C88-8E73-4C7A-B55E-A0D4C65CD672}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameLingoAI.App", "src\GameLingoAI.App\GameLingoAI.App.csproj", "{97CB0EF9-3D8B-427F-B444-6B0C0321E2B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameLingoAI.Tests", "tests\GameLingoAI.Tests\GameLingoAI.Tests.csproj", "{EA0B2219-9D25-4EAC-AC18-D4586420713A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameLingoAI.QualityHarness", "tools\GameLingoAI.QualityHarness\GameLingoAI.QualityHarness.csproj", "{C0023023-0000-4000-8000-000000000023}"
+EndProject
+Global
+  GlobalSection(SolutionConfigurationPlatforms) = preSolution
+    Debug|Any CPU = Debug|Any CPU
+    Release|Any CPU = Release|Any CPU
+  EndGlobalSection
+  GlobalSection(ProjectConfigurationPlatforms) = postSolution
+    {C0023023-0000-4000-8000-000000000023}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+    {C0023023-0000-4000-8000-000000000023}.Debug|Any CPU.Build.0 = Debug|Any CPU
+    {C0023023-0000-4000-8000-000000000023}.Release|Any CPU.ActiveCfg = Release|Any CPU
+    {C0023023-0000-4000-8000-000000000023}.Release|Any CPU.Build.0 = Release|Any CPU
+    {4184A0B4-F8A7-4E0A-9804-B23008255D31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+    {4184A0B4-F8A7-4E0A-9804-B23008255D31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+    {4184A0B4-F8A7-4E0A-9804-B23008255D31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+    {4184A0B4-F8A7-4E0A-9804-B23008255D31}.Release|Any CPU.Build.0 = Release|Any CPU
+    {8EA52C88-8E73-4C7A-B55E-A0D4C65CD672}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+    {8EA52C88-8E73-4C7A-B55E-A0D4C65CD672}.Debug|Any CPU.Build.0 = Debug|Any CPU
+    {8EA52C88-8E73-4C7A-B55E-A0D4C65CD672}.Release|Any CPU.ActiveCfg = Release|Any CPU
+    {8EA52C88-8E73-4C7A-B55E-A0D4C65CD672}.Release|Any CPU.Build.0 = Release|Any CPU
+    {97CB0EF9-3D8B-427F-B444-6B0C0321E2B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+    {97CB0EF9-3D8B-427F-B444-6B0C0321E2B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+    {97CB0EF9-3D8B-427F-B444-6B0C0321E2B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+    {97CB0EF9-3D8B-427F-B444-6B0C0321E2B0}.Release|Any CPU.Build.0 = Release|Any CPU
+    {EA0B2219-9D25-4EAC-AC18-D4586420713A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+    {EA0B2219-9D25-4EAC-AC18-D4586420713A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+    {EA0B2219-9D25-4EAC-AC18-D4586420713A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+    {EA0B2219-9D25-4EAC-AC18-D4586420713A}.Release|Any CPU.Build.0 = Release|Any CPU
+  EndGlobalSection
+EndGlobal

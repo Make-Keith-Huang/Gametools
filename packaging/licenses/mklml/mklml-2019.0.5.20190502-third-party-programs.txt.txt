@@ -1,0 +1,1 @@
+There are no Third Party Programs (as defined in the Agreement) included in this version of the Intel(R) Math Kernel Library.

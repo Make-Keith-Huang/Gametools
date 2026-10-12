@@ -1,0 +1,29 @@
+{
+  "remainingNativeAttributionComplete": false,
+  "schemaVersion": 1,
+  "notices": [
+    {
+      "sha256": "BFDA9286E31251FDC9EAACDDB1856C5E73342126EFCF6E34A53F1D55DDD54F4B",
+      "bytes": 4335,
+      "file": "mklml-2019.0.5.20190502-license.txt.txt",
+      "upstreamBytes": 4413,
+      "upstreamSha256": "C50689A87E94A779EE875116405BDD75AD83C182465EA14FDA0BDED4D4486E86"
+    },
+    {
+      "sha256": "231EEB31DC4F8DF14607E26BC47ED438BF090B7A1147AFC1022D7B0446359076",
+      "bytes": 126,
+      "file": "mklml-2019.0.5.20190502-third-party-programs.txt.txt",
+      "upstreamBytes": 127,
+      "upstreamSha256": "4B0AE1FA6CD44474E3042D7AB844CBE42C4943495D882BEBAAD37950E1C46DF8"
+    }
+  ],
+  "source": "https://paddlepaddledeps.bj.bcebos.com/mklml_win_2019.0.5.20190502.zip",
+  "component": "Intel MKLML and OpenMP",
+  "nativeFiles": {
+    "mklml.dll": "E2A7FD93E1534568626CFFE22676B15164A5A2B3A62F1919A55993478B45811E",
+    "libiomp5md.dll": "BC9E17190505A3BEDA7FEEDD90BA3AB7B6DC3F7CA5D980B2140C53AE459FC5AE"
+  },
+  "archiveSha256": "535857B17643D7F7546B58FC621244E7CFCC4FFF2AA2EBD3FC5B4E126BFC36CF",
+  "version": "2019.0.5.20190502",
+  "textNormalization": "CRLF to LF; add a final LF when absent"
+}

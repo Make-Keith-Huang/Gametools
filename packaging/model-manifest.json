@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "paddleocr-v5-mobile",
+  "version": "PP-OCRv5-mobile-paddle3.0.0",
+  "languages": ["English", "SimplifiedChinese", "TraditionalChinese", "Japanese"],
+  "license": "Apache-2.0",
+  "licenseUrl": "https://github.com/PaddlePaddle/PaddleOCR/blob/main/LICENSE",
+  "source": "https://github.com/PaddlePaddle/PaddleOCR",
+  "downloadRequiresExplicitUserAction": true,
+  "includedInPackage": false,
+  "artifacts": [
+    {
+      "fileName": "PP-OCRv5_mobile_det_infer.tar",
+      "sizeBytes": 4935680,
+      "sha256": "50446E5D01AC2A73D5319C89513281F6578414C888C602F9AF13F93FEEFFFC58",
+      "source": "https://paddle-model-ecology.bj.bcebos.com/paddlex/official_inference_model/paddle3.0.0/PP-OCRv5_mobile_det_infer.tar"
+    },
+    {
+      "fileName": "PP-OCRv5_mobile_rec_infer.tar",
+      "sizeBytes": 16834560,
+      "sha256": "566B9512B34E34A9F0DB54D87B51FA5A0B9ED2CF1AB7E49728CC0B8B5A64F414",
+      "source": "https://paddle-model-ecology.bj.bcebos.com/paddlex/official_inference_model/paddle3.0.0/PP-OCRv5_mobile_rec_infer.tar"
+    }
+  ]
+}

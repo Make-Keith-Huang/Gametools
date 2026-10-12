@@ -1,0 +1,33 @@
+<UserControl x:Class="GameLingoAI.App.Views.HotkeysView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <StackPanel KeyboardNavigation.TabNavigation="Continue">
+    <TextBlock Text="Global hotkeys" FontSize="18" FontWeight="SemiBold" />
+    <TextBlock TextWrapping="Wrap" Margin="0,6" Text="Select actions and type a key name (A-Z, 0-9, F1-F11), not a key-capture field. Use Control and/or Alt; Shift is optional. No keyboard history is recorded. Save stores definitions; Apply registers them for this run only." />
+    <CheckBox Content="Enable selected hotkeys when applying" IsChecked="{Binding Enabled}" IsEnabled="{Binding CanEdit}" />
+    <ItemsControl ItemsSource="{Binding Rows}" IsEnabled="{Binding CanEdit}">
+      <ItemsControl.ItemTemplate>
+        <DataTemplate>
+          <StackPanel Margin="0,8,0,4">
+            <CheckBox Content="{Binding Action}" IsChecked="{Binding Assigned}" AutomationProperties.Name="{Binding Action, StringFormat=Assign shortcut for {0}}" />
+            <WrapPanel Margin="12,4,0,0">
+              <CheckBox Content="Ctrl" IsChecked="{Binding Control}" Margin="0,0,8,0" AutomationProperties.Name="{Binding Action, StringFormat=Control modifier for {0}}" />
+              <CheckBox Content="Alt" IsChecked="{Binding Alt}" Margin="0,0,8,0" AutomationProperties.Name="{Binding Action, StringFormat=Alt modifier for {0}}" />
+              <CheckBox Content="Shift" IsChecked="{Binding Shift}" Margin="0,0,8,0" AutomationProperties.Name="{Binding Action, StringFormat=Shift modifier for {0}}" />
+              <TextBox Width="65" MaxLength="3" Text="{Binding Key, UpdateSourceTrigger=PropertyChanged}" AutomationProperties.Name="{Binding Action, StringFormat=Key name for {0}}" />
+            </WrapPanel>
+          </StackPanel>
+        </DataTemplate>
+      </ItemsControl.ItemTemplate>
+    </ItemsControl>
+    <TextBlock Text="{Binding HasUnsavedChanges, StringFormat=Unsaved shortcut definitions: {0}}" Margin="0,6" />
+    <CheckBox Content="Discard my unsaved shortcut definitions on next Load" IsChecked="{Binding DiscardConfirmed}" />
+    <WrapPanel Margin="0,8">
+      <Button Content="Load definitions" Command="{Binding LoadCommand}" Margin="0,0,8,6" />
+      <Button Content="Save definitions" Command="{Binding SaveCommand}" Margin="0,0,8,6" />
+      <Button Content="Apply for this run" Command="{Binding ApplyCommand}" Margin="0,0,8,6" />
+      <Button Content="Disable now" Command="{Binding DisableCommand}" Margin="0,0,8,6" />
+    </WrapPanel>
+    <TextBlock Text="{Binding Status}" TextWrapping="Wrap" AutomationProperties.LiveSetting="Polite" />
+  </StackPanel>
+</UserControl>

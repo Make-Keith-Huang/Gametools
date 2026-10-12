@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    runs-on: windows-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install .NET 8 SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore
+        run: dotnet restore GameLingoAI.sln
+
+      - name: Verify formatting
+        run: dotnet format GameLingoAI.sln --verify-no-changes --no-restore
+
+      - name: Build Release
+        run: dotnet build GameLingoAI.sln -c Release --no-restore
+
+      - name: Run tests
+        run: dotnet test GameLingoAI.sln -c Release --no-build --settings tests/default.runsettings --collect "XPlat Code Coverage" --results-directory artifacts/test-results --logger "trx;LogFileName=tests.trx"
+
+      - name: Package guard fixtures (no installation)
+        shell: pwsh
+        run: ./scripts/test-package-guards.ps1
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: artifacts/test-results
+          if-no-files-found: ignore
+
+      - name: Compare synthetic replay baseline
+        run: dotnet run --project tools/GameLingoAI.QualityHarness -c Release --no-build -- benchmark 40 artifacts/quality/ci-benchmark.json
+
+      - name: Short wall-clock soak
+        run: dotnet run --project tools/GameLingoAI.QualityHarness -c Release --no-build -- soak ci artifacts/quality/ci-soak.json
+
+      - name: Upload quality reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: quality-reports
+          path: artifacts/quality
+          if-no-files-found: ignore

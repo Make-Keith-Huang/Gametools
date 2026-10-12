@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "component": "Paddle2ONNX",
+  "version": "1.0.0rc2",
+  "source": "https://github.com/PaddlePaddle/Paddle2ONNX/releases/download/v1.0.0rc2/paddle2onnx-win-x64-1.0.0rc2.zip",
+  "archiveSha256": "19B8C146E3FAF6E729ACB07C498F653415D823692D43E98E8E573000D7006816",
+  "sourceCommit": "64c5280a8fd37f17dddfb9e4a88ecaaed64ce874",
+  "textNormalization": "CRLF to LF; add a final LF when absent",
+  "nativeFiles": {
+    "paddle2onnx.dll": "5B260DB5408310DA59ACA6B0A9153DA660640CCAD1715EA9777543B07C53B6B2"
+  },
+  "notices": [
+    {
+      "file": "paddle2onnx-1.0.0rc2-LICENSE.txt",
+      "bytes": 11437,
+      "sha256": "BA77DD623B6441638120D06F0426DB80F9032C457DAC18F4AD8F1F06FD97E2DB",
+      "source": "https://raw.githubusercontent.com/PaddlePaddle/Paddle2ONNX/64c5280a8fd37f17dddfb9e4a88ecaaed64ce874/LICENSE"
+    },
+    {
+      "file": "paddle2onnx-onnx-5b1346e-LICENSE.txt",
+      "bytes": 11358,
+      "sha256": "CFC7749B96F63BD31C3C42B5C471BF756814053E847C10F3EB003417BC523D30",
+      "source": "https://raw.githubusercontent.com/onnx/onnx/5b1346e30d66e4ec550f6b63c3883b258a2e8e3e/LICENSE"
+    },
+    {
+      "file": "paddle2onnx-optimizer-a37748b-LICENSE.txt",
+      "bytes": 11358,
+      "sha256": "CFC7749B96F63BD31C3C42B5C471BF756814053E847C10F3EB003417BC523D30",
+      "source": "https://raw.githubusercontent.com/onnx/optimizer/a37748b2c3a80dad4274401c45c5026c7a506730/LICENSE"
+    }
+  ],
+  "remainingNativeAttributionComplete": false,
+  "unresolved": [
+    "Statically linked protobuf version and corresponding notices: CMake uses find_package(Protobuf REQUIRED) without a pinned version. No binary-to-source-build attestation claimed."
+  ]
+}

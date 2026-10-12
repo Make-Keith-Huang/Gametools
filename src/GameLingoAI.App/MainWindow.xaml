@@ -1,0 +1,441 @@
+<Window x:Class="GameLingoAI.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:core="clr-namespace:GameLingoAI.Core.Models;assembly=GameLingoAI.Core"
+        xmlns:vm="clr-namespace:GameLingoAI.App.ViewModels"
+        xmlns:views="clr-namespace:GameLingoAI.App.Views"
+        xmlns:overlay="clr-namespace:GameLingoAI.App.Overlay"
+        Title="{StaticResource AppTitle}"
+        Width="960"
+        Height="620"
+        MinWidth="760"
+        MinHeight="500"
+        WindowStartupLocation="CenterScreen">
+  <Grid Margin="24">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+
+    <StackPanel Margin="0,0,0,20">
+      <TextBlock FontSize="30" FontWeight="SemiBold" Text="{StaticResource AppTitle}" />
+      <TextBlock Margin="0,4,0,0" Text="{StaticResource AppSubtitle}" />
+    </StackPanel>
+
+    <Grid Grid.Row="1">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="220" />
+        <ColumnDefinition Width="24" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+
+      <StackPanel KeyboardNavigation.TabNavigation="Continue">
+        <Button Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Static vm:PageId.HomeSession}"
+                Content="{StaticResource HomeSessionLabel}"
+                Style="{StaticResource NavigationButtonStyle}" />
+        <Button Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Static vm:PageId.WindowRegion}"
+                Content="{StaticResource WindowRegionLabel}"
+                Style="{StaticResource NavigationButtonStyle}" />
+        <Button Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Static vm:PageId.Provider}"
+                Content="{StaticResource ProviderLabel}"
+                Style="{StaticResource NavigationButtonStyle}" />
+        <Button Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Static vm:PageId.ProfilesSettings}"
+                Content="{StaticResource ProfilesSettingsLabel}"
+                Style="{StaticResource NavigationButtonStyle}" />
+        <Button Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Static vm:PageId.Diagnostics}"
+                Content="{StaticResource DiagnosticsLabel}"
+                Style="{StaticResource NavigationButtonStyle}" />
+        <Button Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Static vm:PageId.About}"
+                Content="{StaticResource AboutLabel}"
+                Style="{StaticResource NavigationButtonStyle}" />
+      </StackPanel>
+
+      <Border Grid.Column="2"
+              Padding="28"
+              BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}"
+              BorderThickness="1"
+              CornerRadius="6">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+          <StackPanel>
+          <TextBlock x:Name="PageTitleText">
+            <TextBlock.Style>
+              <Style BasedOn="{StaticResource PageTitleStyle}" TargetType="TextBlock">
+                <Setter Property="Text" Value="{StaticResource HomeTitle}" />
+                <Style.Triggers>
+                  <DataTrigger Binding="{Binding CurrentPage}" Value="{x:Static vm:PageId.WindowRegion}">
+                    <Setter Property="Text" Value="{StaticResource WindowTitle}" />
+                  </DataTrigger>
+                  <DataTrigger Binding="{Binding CurrentPage}" Value="{x:Static vm:PageId.Provider}">
+                    <Setter Property="Text" Value="{StaticResource ProviderTitle}" />
+                  </DataTrigger>
+                  <DataTrigger Binding="{Binding CurrentPage}" Value="{x:Static vm:PageId.ProfilesSettings}">
+                    <Setter Property="Text" Value="{StaticResource ProfilesTitle}" />
+                  </DataTrigger>
+                  <DataTrigger Binding="{Binding CurrentPage}" Value="{x:Static vm:PageId.Diagnostics}">
+                    <Setter Property="Text" Value="{StaticResource DiagnosticsTitle}" />
+                  </DataTrigger>
+                  <DataTrigger Binding="{Binding CurrentPage}" Value="{x:Static vm:PageId.About}">
+                    <Setter Property="Text" Value="{StaticResource AboutTitle}" />
+                  </DataTrigger>
+                </Style.Triggers>
+              </Style>
+            </TextBlock.Style>
+          </TextBlock>
+          <TextBlock x:Name="PageDescriptionText" TextWrapping="Wrap">
+            <TextBlock.Style>
+              <Style TargetType="TextBlock">
+                <Setter Property="Text" Value="{StaticResource HomeDescription}" />
+                <Style.Triggers>
+                  <DataTrigger Binding="{Binding CurrentPage}" Value="{x:Static vm:PageId.WindowRegion}">
+                    <Setter Property="Text" Value="{StaticResource WindowDescription}" />
+                  </DataTrigger>
+                  <DataTrigger Binding="{Binding CurrentPage}" Value="{x:Static vm:PageId.Provider}">
+                    <Setter Property="Text" Value="{StaticResource ProviderDescription}" />
+                  </DataTrigger>
+                  <DataTrigger Binding="{Binding CurrentPage}" Value="{x:Static vm:PageId.ProfilesSettings}">
+                    <Setter Property="Text" Value="{StaticResource ProfilesDescription}" />
+                  </DataTrigger>
+                  <DataTrigger Binding="{Binding CurrentPage}" Value="{x:Static vm:PageId.Diagnostics}">
+                    <Setter Property="Text" Value="{StaticResource DiagnosticsDescription}" />
+                  </DataTrigger>
+                  <DataTrigger Binding="{Binding CurrentPage}" Value="{x:Static vm:PageId.About}">
+                    <Setter Property="Text" Value="{StaticResource AboutDescription}" />
+                  </DataTrigger>
+                </Style.Triggers>
+              </Style>
+            </TextBlock.Style>
+          </TextBlock>
+
+          <StackPanel Margin="0,16,0,0">
+            <StackPanel.Style>
+              <Style TargetType="StackPanel">
+                <Setter Property="Visibility" Value="Collapsed" />
+                <Style.Triggers>
+                  <DataTrigger Binding="{Binding CurrentPage}" Value="{x:Static vm:PageId.HomeSession}">
+                    <Setter Property="Visibility" Value="Visible" />
+                  </DataTrigger>
+                </Style.Triggers>
+              </Style>
+            </StackPanel.Style>
+            <Button Content="Load configured providers and saved profiles" Command="{Binding Session.LoadProvidersCommand}" />
+            <ComboBox Margin="0,8" ItemsSource="{Binding Session.SavedProfiles}" SelectedItem="{Binding Session.SelectedSavedProfile}"
+                      DisplayMemberPath="Name" AutomationProperties.Name="Saved profile for next session" />
+            <Button Content="Use ad-hoc regions and global settings" Command="{Binding Session.UseAdHocCommand}" />
+            <Button Content="Suggest from windows last refreshed on Window/Region" Command="{Binding Session.SuggestWindowsCommand}" Margin="0,6,0,0" />
+            <ItemsControl ItemsSource="{Binding Session.SuggestedWindows}" DisplayMemberPath="Title" AutomationProperties.Name="Window hint suggestions, not authorized capture targets" />
+            <TextBlock TextWrapping="Wrap" Text="A saved profile supplies its own regions, model and settings. After choosing one, explicitly confirm the window again. Unsaved profile drafts are not used." />
+            <ComboBox Margin="0,8" ItemsSource="{Binding Session.Providers}" SelectedItem="{Binding Session.SelectedProvider}"
+                      DisplayMemberPath="Id" AutomationProperties.Name="Session translation provider" />
+            <WrapPanel>
+              <Button Content="Start" Command="{Binding Session.StartCommand}" Margin="0,0,8,0" />
+              <Button Content="Pause" Command="{Binding Session.PauseCommand}" Margin="0,0,8,0" />
+              <Button Content="Resume" Command="{Binding Session.ResumeCommand}" Margin="0,0,8,0" />
+              <Button Content="Stop" Command="{Binding Session.StopCommand}" />
+              <Button Content="{Binding Session.OverlayVisibilityLabel}" Command="{Binding Session.ToggleOverlayCommand}" Margin="8,0,0,0" />
+              <Button Content="Emergency stop" Command="{Binding Session.EmergencyStopCommand}" Margin="8,0,0,0" />
+              <Button Content="Edit overlay layout" Command="{Binding Session.EditOverlayCommand}" Margin="8,0,0,0" />
+            </WrapPanel>
+            <TextBlock Text="{Binding Session.Message}" TextWrapping="Wrap" Margin="0,8" />
+            <TextBlock Text="{Binding Session.SessionDetails}" TextWrapping="Wrap" />
+            <TextBlock Text="{Binding Session.Latency}" TextWrapping="Wrap" />
+            <TextBox Text="{Binding Session.ProfileIdentity, Mode=OneWay}" IsReadOnly="True"
+                     AutomationProperties.Name="Current profile ID for profile-scoped glossary terms" />
+            <TextBlock Text="{Binding Session.Text}" TextWrapping="Wrap" FontSize="24" />
+            <TextBlock Text="{Binding Session.Metrics}" TextWrapping="Wrap" Margin="0,8" />
+            <Expander Header="Overlay appearance and layout">
+              <overlay:OverlaySettingsView DataContext="{Binding Session.OverlaySettings}" />
+            </Expander>
+          </StackPanel>
+          <StackPanel Margin="0,24,0,0">
+            <StackPanel.Style>
+              <Style TargetType="StackPanel">
+                <Setter Property="Visibility" Value="Collapsed" />
+                <Style.Triggers>
+                  <DataTrigger Binding="{Binding CurrentPage}" Value="{x:Static vm:PageId.WindowRegion}">
+                    <Setter Property="Visibility" Value="Visible" />
+                  </DataTrigger>
+                </Style.Triggers>
+              </Style>
+            </StackPanel.Style>
+            <TextBlock Margin="0,0,0,8" FontWeight="SemiBold" Text="{StaticResource SelectWindowLabel}" />
+            <ListBox Height="170"
+                     ItemsSource="{Binding WindowSelection.Windows}"
+                     SelectedItem="{Binding WindowSelection.SelectedWindow, Mode=TwoWay}">
+              <ListBox.ItemTemplate>
+                <DataTemplate>
+                  <StackPanel Margin="4">
+                    <TextBlock FontWeight="SemiBold" Text="{Binding Title}" />
+                    <TextBlock>
+                      <Run Text="{Binding ProcessDisplayHint}" />
+                      <Run Text=" · DPI " />
+                      <Run Text="{Binding Dpi}" />
+                      <Run Text=" · Minimized: " />
+                      <Run Text="{Binding IsMinimized}" />
+                    </TextBlock>
+                  </StackPanel>
+                </DataTemplate>
+              </ListBox.ItemTemplate>
+            </ListBox>
+            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+              <Button Margin="0,0,8,0"
+                      Command="{Binding WindowSelection.RefreshCommand}"
+                      Content="{StaticResource RefreshWindowsLabel}" />
+              <Button Command="{Binding WindowSelection.ConfirmCommand}"
+                      CommandParameter="True"
+                      Content="{StaticResource ConfirmWindowLabel}" />
+            </StackPanel>
+            <TextBlock Margin="0,10,0,0" TextWrapping="Wrap">
+              <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                  <Setter Property="Text" Value="{StaticResource SelectionRequiredMessage}" />
+                  <Style.Triggers>
+                    <DataTrigger Binding="{Binding WindowSelection.ValidationState}"
+                                 Value="{x:Static core:WindowSelectionValidationState.ConfirmationRequired}">
+                      <Setter Property="Text" Value="{StaticResource ConfirmationRequiredMessage}" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding WindowSelection.ValidationState}"
+                                 Value="{x:Static core:WindowSelectionValidationState.Ready}">
+                      <Setter Property="Text" Value="{StaticResource SelectionReadyMessage}" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding WindowSelection.ValidationState}"
+                                 Value="{x:Static core:WindowSelectionValidationState.TargetUnavailable}">
+                      <Setter Property="Text" Value="{StaticResource TargetUnavailableMessage}" />
+                    </DataTrigger>
+                  </Style.Triggers>
+                </Style>
+              </TextBlock.Style>
+            </TextBlock>
+            <TextBlock Margin="0,6,0,0" Text="{Binding WindowSelection.RefreshError}" TextWrapping="Wrap" />
+            <views:RegionEditorView />
+          </StackPanel>
+
+          <StackPanel Margin="0,24,0,0">
+            <StackPanel.Style>
+              <Style TargetType="StackPanel">
+                <Setter Property="Visibility" Value="Collapsed" />
+                <Style.Triggers>
+                  <DataTrigger Binding="{Binding CurrentPage}" Value="{x:Static vm:PageId.Provider}">
+                    <Setter Property="Visibility" Value="Visible" />
+                  </DataTrigger>
+                </Style.Triggers>
+              </Style>
+            </StackPanel.Style>
+            <Button Command="{Binding ProviderConnection.TestConnectionCommand}"
+                    Content="Test connection (no game text)" />
+            <Button Margin="0,8,0,0"
+                    Command="{Binding ProviderConnection.PreviewCustomRequestCommand}"
+                    Content="Preview custom request (redacted)" />
+            <TextBlock Margin="0,10,0,0"
+                       Text="{Binding ProviderConnection.Status}"
+                       TextWrapping="Wrap" />
+            <TextBlock Margin="0,10,0,0"
+                       Text="{Binding ProviderConnection.Preview}"
+                       TextWrapping="Wrap" />
+          </StackPanel>
+
+          <StackPanel Margin="0,24,0,0">
+            <StackPanel.Style>
+              <Style TargetType="StackPanel">
+                <Setter Property="Visibility" Value="Collapsed" />
+                <Style.Triggers>
+                  <DataTrigger Binding="{Binding CurrentPage}" Value="{x:Static vm:PageId.ProfilesSettings}">
+                    <Setter Property="Visibility" Value="Visible" />
+                  </DataTrigger>
+                </Style.Triggers>
+              </Style>
+            </StackPanel.Style>
+            <views:ProfilesView DataContext="{Binding Profiles}" />
+            <Separator Margin="0,20,0,16" />
+            <views:HotkeysView DataContext="{Binding Hotkeys}" />
+            <Separator Margin="0,20,0,16" />
+            <TextBlock FontSize="18" FontWeight="SemiBold" Text="Local OCR model" />
+            <TextBlock Margin="0,8,0,0" FontWeight="SemiBold" Text="{Binding OcrModel.DisplayName}" />
+            <TextBlock Margin="0,4,0,0" TextWrapping="Wrap">
+              <Run Text="Languages: " />
+              <Run Text="{Binding OcrModel.Languages, Mode=OneWay}" />
+            </TextBlock>
+            <TextBlock TextWrapping="Wrap">
+              <Run Text="Download size: " />
+              <Run Text="{Binding OcrModel.DownloadSize, Mode=OneWay}" />
+              <Run Text=" · License: " />
+              <Run Text="{Binding OcrModel.License, Mode=OneWay}" />
+            </TextBlock>
+            <TextBlock Text="{Binding OcrModel.SourceUrl, StringFormat=Source: {0}}" TextWrapping="Wrap" />
+            <TextBlock Text="{Binding OcrModel.LicenseUrl, StringFormat=License text: {0}}" TextWrapping="Wrap" />
+            <ProgressBar Margin="0,10,0,0"
+                         Height="8"
+                         Maximum="1"
+                         Value="{Binding OcrModel.DownloadProgress, Mode=OneWay}" />
+            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+              <Button Margin="0,0,8,0"
+                      Command="{Binding OcrModel.CheckStatusCommand}"
+                      Content="Check status" />
+              <Button Command="{Binding OcrModel.DownloadCommand}"
+                      Content="Download, verify, and install" />
+            </StackPanel>
+            <TextBlock Margin="0,8,0,0" Text="{Binding OcrModel.Status}" TextWrapping="Wrap" />
+            <TextBlock Margin="0,8,0,0"
+                       Text="The download begins only when you select the install button. Pixels remain local."
+                       TextWrapping="Wrap" />
+            <Separator Margin="0,20,0,16" />
+            <TextBlock FontSize="18" FontWeight="SemiBold" Text="Glossary and prompt preview" />
+            <TextBlock Margin="0,4,0,8" TextWrapping="Wrap"
+                       Text="Load saved terms first. Add/edit/import changes the draft; Save persists it atomically. Leave profile ID blank for global terms; scoped terms require a saved profile." />
+            <WrapPanel>
+              <Button Content="Load saved glossary" Command="{Binding Glossary.LoadCommand}" Margin="0,0,8,8" />
+              <Button Content="Save glossary" Command="{Binding Glossary.SaveCommand}" Margin="0,0,8,8" />
+            </WrapPanel>
+            <CheckBox Content="Discard my unsaved glossary draft when loading" IsChecked="{Binding Glossary.DiscardConfirmed}" />
+            <TextBlock Text="{Binding Glossary.HasUnsavedChanges, StringFormat=Unsaved glossary changes: {0}}" />
+            <TextBlock Text="Profile ID (optional, advanced)" />
+            <TextBox Margin="0,0,0,6" Text="{Binding Glossary.ProfileIdText, UpdateSourceTrigger=PropertyChanged}"
+                     AutomationProperties.Name="Glossary profile ID" MaxLength="36"
+                     ToolTip="Optional profile GUID; blank means global" />
+            <TextBlock Text="Source language → Target language" />
+            <StackPanel Orientation="Horizontal">
+              <TextBox Width="100" Margin="0,0,8,0" Text="{Binding Glossary.SourceLanguage, UpdateSourceTrigger=PropertyChanged}"
+                       ToolTip="Source language" MaxLength="32" AutomationProperties.Name="Source language" />
+              <TextBox Width="100" Text="{Binding Glossary.TargetLanguage, UpdateSourceTrigger=PropertyChanged}"
+                       ToolTip="Target language" MaxLength="32" AutomationProperties.Name="Target language" />
+            </StackPanel>
+            <TextBlock Margin="0,8,0,0" Text="Source term" />
+            <TextBox Margin="0,8,0,4" Text="{Binding Glossary.SourceTerm, UpdateSourceTrigger=PropertyChanged}"
+                     ToolTip="Source term (up to 100 characters)" MaxLength="100" AutomationProperties.Name="Source term" />
+            <TextBlock Text="Target term" />
+            <TextBox Margin="0,0,0,4" Text="{Binding Glossary.TargetTerm, UpdateSourceTrigger=PropertyChanged}"
+                     ToolTip="Target term (up to 100 characters)" MaxLength="100" AutomationProperties.Name="Target term" />
+            <StackPanel Orientation="Horizontal">
+              <CheckBox Margin="0,0,12,0" Content="Case sensitive" IsChecked="{Binding Glossary.CaseSensitive}" />
+              <CheckBox Content="Enabled" IsChecked="{Binding Glossary.Enabled}" />
+            </StackPanel>
+            <StackPanel Margin="0,8,0,0" Orientation="Horizontal">
+              <Button Margin="0,0,8,0" Command="{Binding Glossary.AddCommand}" Content="Add term" />
+              <Button Margin="0,0,8,0" Command="{Binding Glossary.UpdateCommand}" Content="Update selected" />
+              <Button Command="{Binding Glossary.DeleteCommand}" Content="Remove selected" />
+            </StackPanel>
+            <ListBox Height="100" Margin="0,8,0,0" ItemsSource="{Binding Glossary.Entries}"
+                     AutomationProperties.Name="Glossary terms"
+                     SelectedItem="{Binding Glossary.SelectedEntry, Mode=TwoWay}">
+              <ListBox.ItemTemplate>
+                <DataTemplate>
+                  <StackPanel>
+                    <TextBlock>
+                      <Run Text="{Binding SourceTerm, Mode=OneWay}" />
+                      <Run Text=" → " />
+                      <Run Text="{Binding TargetTerm, Mode=OneWay}" />
+                    </TextBlock>
+                    <TextBlock FontSize="11">
+                      <Run Text="{Binding SourceLanguage, Mode=OneWay}" />
+                      <Run Text=" → " />
+                      <Run Text="{Binding TargetLanguage, Mode=OneWay}" />
+                      <Run Text=" · Enabled: " />
+                      <Run Text="{Binding Enabled, Mode=OneWay}" />
+                      <Run Text=" · Case sensitive: " />
+                      <Run Text="{Binding CaseSensitive, Mode=OneWay}" />
+                    </TextBlock>
+                  </StackPanel>
+                </DataTemplate>
+              </ListBox.ItemTemplate>
+            </ListBox>
+            <TextBlock Margin="0,12,0,4" Text="Versioned JSON import/export" FontWeight="SemiBold" />
+            <TextBox Height="80" Text="{Binding Glossary.JsonText, UpdateSourceTrigger=PropertyChanged}"
+                     MaxLength="4194304" AutomationProperties.Name="Glossary import or export JSON"
+                     AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" />
+            <StackPanel Margin="0,6,0,0" Orientation="Horizontal">
+              <Button Margin="0,0,8,0" Command="{Binding Glossary.ExportCommand}" Content="Export to box" />
+              <Button Command="{Binding Glossary.ImportCommand}" Content="Replace glossary from JSON" />
+            </StackPanel>
+            <TextBlock Margin="0,12,0,4" Text="Sample subtitle (manual input only)" FontWeight="SemiBold" />
+            <TextBox Height="60" Text="{Binding Glossary.SampleText, UpdateSourceTrigger=PropertyChanged}"
+                     MaxLength="4000" AutomationProperties.Name="Sample subtitle"
+                     AcceptsReturn="True" TextWrapping="Wrap" />
+            <StackPanel Margin="0,6,0,0" Orientation="Horizontal">
+              <CheckBox Margin="0,0,12,0" Content="Preserve line breaks"
+                        IsChecked="{Binding Glossary.PreserveLineBreaks}" />
+              <CheckBox Content="Preserve tags" IsChecked="{Binding Glossary.PreserveTags}" />
+            </StackPanel>
+            <Button Margin="0,8,0,0" Command="{Binding Glossary.PreviewCommand}" Content="Preview exact prompt" />
+            <TextBlock Margin="0,8,0,0" Text="{Binding Glossary.Status}" TextWrapping="Wrap" />
+            <TextBox Height="140" Margin="0,4,0,0" IsReadOnly="True" Text="{Binding Glossary.Preview, Mode=OneWay}"
+                     AutomationProperties.Name="Exact prompt preview"
+                     AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" />
+            <Separator Margin="0,20,0,16" />
+            <TextBlock FontSize="18" FontWeight="SemiBold" Text="Translation cache" />
+            <TextBlock Margin="0,4,0,8" TextWrapping="Wrap"
+                       Text="Cache works with history off. Set maximum rows to 0 to disable storage. Cached text persists in the local SQLite database until cleared or expired." />
+            <TextBlock Text="Maximum rows" />
+            <TextBox Text="{Binding Cache.MaximumRows, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"
+                     AutomationProperties.Name="Maximum cached rows" />
+            <TextBlock Margin="0,6,0,0" Text="Maximum size (MiB)" />
+            <TextBox Text="{Binding Cache.MaximumMegabytes, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"
+                     AutomationProperties.Name="Maximum cache size in MiB" />
+            <TextBlock Margin="0,6,0,0" Text="Maximum age (days)" />
+            <TextBox Text="{Binding Cache.MaximumAgeDays, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"
+                     AutomationProperties.Name="Maximum cache age in days" />
+            <WrapPanel Margin="0,8,0,0">
+              <Button Margin="0,0,8,8" Command="{Binding Cache.LoadCommand}" Content="Load settings / statistics" />
+              <Button Margin="0,0,8,8" Command="{Binding Cache.ApplyCommand}" Content="Apply retention" />
+              <Button Margin="0,0,8,8" Command="{Binding Cache.ClearCommand}" Content="Clear translation cache" />
+              <Button Margin="0,0,8,8" Command="{Binding Cache.ExportStatisticsCommand}" Content="Export statistics JSON" />
+              <Button Margin="0,0,8,8" Command="{Binding Cache.ExportContentCommand}" Content="Export cached text (up to 100 entries)" />
+            </WrapPanel>
+            <TextBlock Text="{Binding Cache.Status}" TextWrapping="Wrap" />
+            <TextBox Height="100" Margin="0,4,0,0" IsReadOnly="True" Text="{Binding Cache.ExportJson, Mode=OneWay}"
+                     AutomationProperties.Name="Cache export JSON" AcceptsReturn="True" TextWrapping="Wrap"
+                     VerticalScrollBarVisibility="Auto" />
+            <Separator Margin="0,20,0,16" />
+            <TextBlock FontSize="18" FontWeight="SemiBold" Text="Local database and privacy" />
+            <TextBlock Text="{Binding Database.Status}" TextWrapping="Wrap" Margin="0,8" />
+            <Button Content="Retry database initialization" Command="{Binding Database.RetryCommand}" />
+            <TextBlock Text="New recovery-copy file path (local, private text may be included)" Margin="0,8,0,4" TextWrapping="Wrap" />
+            <TextBox Text="{Binding Database.RecoveryPath, UpdateSourceTrigger=PropertyChanged}" MaxLength="1024"
+                     AutomationProperties.Name="Recovery database destination path" />
+            <Button Content="Export local recovery copy (never overwrite)" Command="{Binding Database.ExportRecoveryCommand}" Margin="0,6" />
+            <CheckBox IsChecked="{Binding Database.ConfirmDelete}"
+                      Content="I confirm deletion of all cache and history. Profiles, glossary and separate backups remain." />
+            <Button Content="Clear private data and compact (session must be stopped)"
+                    Command="{Binding Database.ClearPrivateDataCommand}" Margin="0,6" />
+          </StackPanel>
+
+          <StackPanel Margin="0,28,0,0">
+            <StackPanel.Style>
+              <Style TargetType="StackPanel">
+                <Setter Property="Visibility" Value="Collapsed" />
+                <Style.Triggers>
+                  <DataTrigger Binding="{Binding CurrentPage}" Value="{x:Static vm:PageId.Diagnostics}">
+                    <Setter Property="Visibility" Value="Visible" />
+                  </DataTrigger>
+                </Style.Triggers>
+              </Style>
+            </StackPanel.Style>
+            <views:DiagnosticsView DataContext="{Binding Diagnostics}" />
+          </StackPanel>
+
+          <StackPanel Margin="0,28,0,0">
+            <TextBlock FontWeight="SemiBold" Text="{StaticResource SessionStateLabel}" />
+            <TextBlock Margin="0,4,0,0" Text="{Binding SessionStatus.State}" />
+            <TextBlock Margin="0,20,0,4" FontWeight="SemiBold" Text="{StaticResource ValidationLabel}" />
+            <ItemsControl ItemsSource="{Binding SessionStatus.ValidationErrors}" />
+            <TextBlock Margin="0,20,0,0"
+                       Foreground="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}"
+                       Text="{Binding LastError}"
+                       TextWrapping="Wrap" />
+          </StackPanel>
+          </StackPanel>
+        </ScrollViewer>
+      </Border>
+    </Grid>
+
+    <TextBlock Grid.Row="2"
+               Margin="0,20,0,0"
+               Text="{StaticResource AboutDescription}"
+               TextWrapping="Wrap" />
+  </Grid>
+</Window>

@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0-windows10.0.18362.0</TargetFramework>
+    <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+  <ItemGroup>
+    <Using Include="System.Net.Http" />
+    <Using Include="System.IO" />
+    <ProjectReference Include="../../src/GameLingoAI.Core/GameLingoAI.Core.csproj" />
+    <PackageReference Include="OpenCvSharp4" Version="4.13.0.20260627" />
+    <PackageReference Include="OpenCvSharp4.runtime.win.slim" Version="4.13.0.20260627" />
+    <PackageReference Include="Sdcb.PaddleOCR" Version="3.3.1" />
+    <PackageReference Include="Sdcb.PaddleInference.runtime.win64.mkl" Version="3.3.1.70" />
+    <Compile Include="../../src/GameLingoAI.Infrastructure/Ocr/OcrModels.cs" Link="Production/OcrModels.cs" />
+    <Compile Include="../../src/GameLingoAI.Infrastructure/Ocr/OcrModelProvisioner.cs" Link="Production/OcrModelProvisioner.cs" />
+    <Compile Include="../../src/GameLingoAI.Infrastructure/Ocr/PaddleOcrRuntimeContracts.cs" Link="Production/PaddleOcrRuntimeContracts.cs" />
+    <Compile Include="../../src/GameLingoAI.Infrastructure/Ocr/SdcbPaddleOcrRuntime.cs" Link="Production/SdcbPaddleOcrRuntime.cs" />
+    <Compile Include="../../src/GameLingoAI.Infrastructure/Ocr/ReusablePaddleOcrRuntime.cs" Link="Production/ReusablePaddleOcrRuntime.cs" />
+    <Compile Include="../../src/GameLingoAI.Infrastructure/Ocr/PaddleOcrEngine.cs" Link="Production/PaddleOcrEngine.cs" />
+  </ItemGroup>
+</Project>

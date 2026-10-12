@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "component": "OpenCV slim / OpenCvSharp and source-declared bundled dependencies",
+  "version": "4.13.0; OpenCvSharp 4.13.0.20260627",
+  "sourceCommit": "OpenCV fe38fc608f6acb8b68953438a62305d8318f4fcd; OpenCvSharp f07f79374fe04ba3236a69ab2f451c46a694a281",
+  "evidence": "OpenCV commit matches native build information and wrapper gitlink. Source-declared notices, not a linker-map or reproducible-build attestation.",
+  "textNormalization": "CRLF to LF; add a final LF when absent",
+  "nativeFiles": {
+    "OpenCvSharpExtern.dll": "1FA122BDB8E94175E7719FB8AA8F2AB211268A756F5D0C7A13C710ED79AE30CD"
+  },
+  "notices": [
+    {
+      "sha256": "CFC7749B96F63BD31C3C42B5C471BF756814053E847C10F3EB003417BC523D30",
+      "bytes": 11358,
+      "file": "opencv-4.13.0-LICENSE.txt",
+      "source": "https://raw.githubusercontent.com/opencv/opencv/fe38fc608f6acb8b68953438a62305d8318f4fcd/LICENSE"
+    },
+    {
+      "sha256": "14EBA5F05238F57C77E94F0EBD29A0B3736BA0456FF990CDA16E21B6903AC453",
+      "bytes": 1697,
+      "file": "opencv-openexr-LICENSE.txt",
+      "source": "https://raw.githubusercontent.com/opencv/opencv/fe38fc608f6acb8b68953438a62305d8318f4fcd/3rdparty/openexr/LICENSE"
+    },
+    {
+      "sha256": "A6AF136F3E15038A666B61F376612A07D9A4E48CB7C01ADBF3E33B3F14AB49B6",
+      "bytes": 2112,
+      "file": "opencv-openjpeg-LICENSE.txt",
+      "source": "https://raw.githubusercontent.com/opencv/opencv/fe38fc608f6acb8b68953438a62305d8318f4fcd/3rdparty/openjpeg/LICENSE"
+    },
+    {
+      "sha256": "6E5E117324AFD944DCF67F36CF329843BC1A92229A8CD9BB573D7A83130FEA7D",
+      "bytes": 1732,
+      "file": "opencv-protobuf-LICENSE.txt",
+      "source": "https://raw.githubusercontent.com/opencv/opencv/fe38fc608f6acb8b68953438a62305d8318f4fcd/3rdparty/protobuf/LICENSE"
+    },
+    {
+      "sha256": "CFC7749B96F63BD31C3C42B5C471BF756814053E847C10F3EB003417BC523D30",
+      "bytes": 11358,
+      "file": "opencv-flatbuffers-LICENSE.txt",
+      "source": "https://raw.githubusercontent.com/opencv/opencv/fe38fc608f6acb8b68953438a62305d8318f4fcd/3rdparty/flatbuffers/LICENSE.txt"
+    },
+    {
+      "sha256": "CFACEADFF07C2C9458283079CD0166872AA2D93D5C480F1F417BE321AA7E0F4D",
+      "bytes": 1309,
+      "file": "opencv-opencl-LICENSE.txt",
+      "source": "https://raw.githubusercontent.com/opencv/opencv/fe38fc608f6acb8b68953438a62305d8318f4fcd/3rdparty/include/opencl/LICENSE.txt"
+    },
+    {
+      "sha256": "93A73400A67BA64071D073386C96B21DA8D8265574DE0C71520061F741B0D645",
+      "bytes": 11336,
+      "file": "opencvsharp-4.13-LICENSE.txt",
+      "source": "https://raw.githubusercontent.com/shimat/opencvsharp/f07f79374fe04ba3236a69ab2f451c46a694a281/LICENSE"
+    }
+  ],
+  "remainingNativeAttributionComplete": false,
+  "unresolved": [
+    "Codec source notices are in opencv-codecs; exact static-link and patched-binary correspondence remain unverified.",
+    "Intel source/archive notices are in opencv-intel; exact patched/static binary correspondence remains unverified.",
+    "Shared build non-free flag and exact linked static-object set are not resolved by these notices."
+  ]
+}

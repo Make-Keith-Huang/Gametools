@@ -1,0 +1,112 @@
+General configuration for OpenCV 4.13.0 =====================================
+  Version control:               fe38fc6
+
+  Extra modules:
+    Location (extra):            D:/a/opencvsharp/opencvsharp/opencv_contrib/modules
+    Version control (extra):     d99ad2a
+
+  Platform:
+    Timestamp:                   2026-06-27T02:28:43Z
+    Host:                        Windows 10.0.26100 AMD64
+    CMake:                       4.3.4
+    CMake generator:             Visual Studio 18 2026
+    CMake build tool:            C:/Program Files/Microsoft Visual Studio/18/Enterprise/MSBuild/Current/Bin/amd64/MSBuild.exe
+    MSVC:                        1951
+    Configuration:               Debug Release
+    Algorithm Hint:              ALGO_HINT_ACCURATE
+
+  CPU/HW features:
+    Baseline:                    SSE SSE2 SSE3
+      requested:                 SSE3
+    Dispatched code generation:  SSE4_1 SSE4_2 AVX FP16 AVX2 AVX512_SKX
+      SSE4_1 (15 files):         + SSSE3 SSE4_1
+      SSE4_2 (1 files):          + SSSE3 SSE4_1 POPCNT SSE4_2
+      AVX (9 files):             + SSSE3 SSE4_1 POPCNT SSE4_2 AVX
+      FP16 (0 files):            + SSSE3 SSE4_1 POPCNT SSE4_2 AVX FP16
+      AVX2 (35 files):           + SSSE3 SSE4_1 POPCNT SSE4_2 AVX FP16 AVX2 FMA3
+      AVX512_SKX (7 files):      + SSSE3 SSE4_1 POPCNT SSE4_2 AVX FP16 AVX2 FMA3 AVX_512F AVX512_COMMON AVX512_SKX
+
+  C/C++:
+    Built as dynamic libs?:      NO
+    C++ standard:                11
+    C++ Compiler:                C:/Program Files/Microsoft Visual Studio/18/Enterprise/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/cl.exe  (ver 19.51.36248.0)
+    C++ flags (Release):         /DWIN32 /D_WINDOWS /W4 /GR  /D _CRT_SECURE_NO_DEPRECATE /D _CRT_NONSTDC_NO_DEPRECATE /D _SCL_SECURE_NO_WARNINGS /Gy /bigobj /Oi  /fp:precise    /EHa /wd4127 /wd4251 /wd4324 /wd4275 /wd4512 /wd4589 /wd4819 /GS /sdl /guard:cf /w34018 /w34146 /w34244 /w34267 /w34302 /w34308 /w34509 /w34532 /w34533 /w34700 /w34789 /w34995 /w34996 /MP  /O2 /Ob2 /DNDEBUG 
+    C++ flags (Debug):           /DWIN32 /D_WINDOWS /W4 /GR  /D _CRT_SECURE_NO_DEPRECATE /D _CRT_NONSTDC_NO_DEPRECATE /D _SCL_SECURE_NO_WARNINGS /Gy /bigobj /Oi  /fp:precise    /EHa /wd4127 /wd4251 /wd4324 /wd4275 /wd4512 /wd4589 /wd4819 /GS /sdl /guard:cf /w34018 /w34146 /w34244 /w34267 /w34302 /w34308 /w34509 /w34532 /w34533 /w34700 /w34789 /w34995 /w34996 /MP  /Zi /Ob0 /Od /RTC1 
+    C Compiler:                  C:/Program Files/Microsoft Visual Studio/18/Enterprise/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/cl.exe
+    C flags (Release):           /DWIN32 /D_WINDOWS /W3  /D _CRT_SECURE_NO_DEPRECATE /D _CRT_NONSTDC_NO_DEPRECATE /D _SCL_SECURE_NO_WARNINGS /Gy /bigobj /Oi  /fp:precise    /GS /sdl /guard:cf /w34018 /w34146 /w34244 /w34267 /w34302 /w34308 /w34509 /w34532 /w34533 /w34700 /w34789 /w34995 /w34996 /MP   /O2 /Ob2 /DNDEBUG 
+    C flags (Debug):             /DWIN32 /D_WINDOWS /W3  /D _CRT_SECURE_NO_DEPRECATE /D _CRT_NONSTDC_NO_DEPRECATE /D _SCL_SECURE_NO_WARNINGS /Gy /bigobj /Oi  /fp:precise    /GS /sdl /guard:cf /w34018 /w34146 /w34244 /w34267 /w34302 /w34308 /w34509 /w34532 /w34533 /w34700 /w34789 /w34995 /w34996 /MP /Zi /Ob0 /Od /RTC1 
+    Linker flags (Release):      /machine:x64   /guard:cf /dynamicbase /NODEFAULTLIB:atlthunk.lib /INCREMENTAL:NO  /NODEFAULTLIB:libcmtd.lib /NODEFAULTLIB:libcpmtd.lib /NODEFAULTLIB:msvcrtd.lib
+    Linker flags (Debug):        /machine:x64   /guard:cf /dynamicbase /NODEFAULTLIB:atlthunk.lib /debug /INCREMENTAL  /NODEFAULTLIB:libcmt.lib /NODEFAULTLIB:libcpmt.lib /NODEFAULTLIB:msvcrt.lib
+    ccache:                      NO
+    Precompiled headers:         YES
+    Extra dependencies:          comctl32 gdi32 ole32 setupapi ws2_32 D:/a/opencvsharp/opencvsharp/vcpkg_installed/x64-windows-static/lib/jpeg.lib D:/a/opencvsharp/opencvsharp/vcpkg_installed/x64-windows-static/lib/libwebpdecoder.lib D:/a/opencvsharp/opencvsharp/vcpkg_installed/x64-windows-static/lib/libwebp.lib D:/a/opencvsharp/opencvsharp/vcpkg_installed/x64-windows-static/lib/libwebpdemux.lib D:/a/opencvsharp/opencvsharp/vcpkg_installed/x64-windows-static/lib/libwebpmux.lib D:/a/opencvsharp/opencvsharp/vcpkg_installed/x64-windows-static/lib/libsharpyuv.lib D:/a/opencvsharp/opencvsharp/vcpkg_installed/x64-windows-static/lib/libpng16.lib D:/a/opencvsharp/opencvsharp/vcpkg_installed/x64-windows-static/lib/tiff.lib openjp2 D:/a/opencvsharp/opencvsharp/vcpkg_installed/x64-windows-static/lib/zlib.lib
+    3rdparty dependencies:       ittnotify libprotobuf IlmImf ipphal ippiw ippicv
+
+  OpenCV modules:
+    To be built:                 aruco bgsegm calib3d core dnn dnn_superres face features2d flann hfs highgui img_hash imgcodecs imgproc line_descriptor ml objdetect optflow phase_unwrapping photo plot quality rgbd saliency shape signal stitching superres text tracking video videoio wechat_qrcode xfeatures2d ximgproc xobjdetect xphoto
+    Disabled:                    bioinspired ccalib datasets dnn_objdetect dpm fuzzy intensity_transform java_bindings_generator js_bindings_generator mcc objc_bindings_generator python_bindings_generator python_tests rapid reg stereo structured_light surface_matching videostab world
+    Disabled by dependency:      -
+    Unavailable:                 alphamat cannops cudaarithm cudabgsegm cudacodec cudafeatures2d cudafilters cudaimgproc cudalegacy cudaobjdetect cudaoptflow cudastereo cudawarping cudev cvv fastcv freetype gapi hdf java julia matlab ovis python2 python3 sfm ts viz
+    Applications:                -
+    Documentation:               NO
+    Non-free algorithms:         YES
+
+  Windows RT support:            NO
+
+  GUI:                           WIN32UI
+    Win32 UI:                    YES
+    VTK support:                 NO
+
+  Media I/O: 
+    ZLib:                        D:/a/opencvsharp/opencvsharp/vcpkg_installed/x64-windows-static/lib/zlib.lib (ver 1.3.1)
+    JPEG:                        D:/a/opencvsharp/opencvsharp/vcpkg_installed/x64-windows-static/lib/jpeg.lib (ver 70)
+    WEBP:                        D:/a/opencvsharp/opencvsharp/vcpkg_installed/x64-windows-static/lib/libwebp.lib (ver 1.6.0)
+    AVIF:                        NO
+    PNG:                         D:/a/opencvsharp/opencvsharp/vcpkg_installed/x64-windows-static/lib/libpng16.lib (ver 1.6.55)
+    TIFF:                        D:/a/opencvsharp/opencvsharp/vcpkg_installed/x64-windows-static/lib/tiff.lib (ver 42 / 4.7.1)
+    JPEG 2000:                   OpenJPEG (ver 2.5.3)
+    OpenEXR:                     build (ver 2.3.0)
+    GIF:                         YES
+    HDR:                         YES
+    SUNRASTER:                   YES
+    PXM:                         YES
+    PFM:                         YES
+
+  Video I/O:
+    FFMPEG:                      YES (prebuilt binaries)
+      avcodec:                   YES (58.134.100)
+      avformat:                  YES (58.76.100)
+      avutil:                    YES (56.70.100)
+      swscale:                   YES (5.9.100)
+      avdevice:                  NO
+    DirectShow:                  YES
+    Media Foundation:            YES
+      DXVA:                      YES
+    Orbbec:                      YES
+
+  Parallel framework:            Concurrency
+
+  Trace:                         YES (with Intel ITT(3.25.4))
+
+  Other third-party libraries:
+    Intel IPP:                   2022.2.0 [2022.2.0]
+           at:                   D:/a/opencvsharp/opencvsharp/opencv/build/3rdparty/ippicv/ippicv_win/icv
+    Intel IPP IW:                sources (2022.2.0)
+              at:                D:/a/opencvsharp/opencvsharp/opencv/build/3rdparty/ippicv/ippicv_win/iw
+    Lapack:                      NO
+    Eigen:                       NO
+    Custom HAL:                  YES (ipp (ver 0.0.1))
+    Protobuf:                    build (3.19.1)
+    Flatbuffers:                 builtin/3rdparty (25.9.23)
+
+  OpenCL:                        YES (NVD3D11)
+    Include path:                D:/a/opencvsharp/opencvsharp/opencv/3rdparty/include/opencl/1.2
+    Link libraries:              Dynamic load
+
+  Python (for build):            C:/hostedtoolcache/windows/Python/3.12.10/x64/python3.exe
+
+  Install to:                    D:/a/opencvsharp/opencvsharp/opencv_artifacts
+-----------------------------------------------------------------
+
+
+Native load and color conversion passed; OCR not tested.

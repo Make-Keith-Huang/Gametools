@@ -1,0 +1,38 @@
+<UserControl x:Class="GameLingoAI.App.Overlay.OverlaySettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <StackPanel>
+    <TextBlock Text="Subtitle overlay" FontWeight="SemiBold" Margin="0,12,0,8" />
+    <TextBlock Text="Font family / size / foreground (#RRGGBB)" />
+    <WrapPanel>
+      <TextBox Text="{Binding FontFamily, UpdateSourceTrigger=PropertyChanged}" Width="150" AutomationProperties.Name="Overlay font family" />
+      <TextBox Text="{Binding FontSize}" Width="60" AutomationProperties.Name="Overlay font size" />
+      <TextBox Text="{Binding Foreground}" Width="90" AutomationProperties.Name="Overlay foreground hex color" />
+      <CheckBox IsChecked="{Binding Bold}" Content="Semibold" Margin="8,0" />
+    </WrapPanel>
+    <TextBlock Text="Outline color / thickness / background opacity (0–1)" Margin="0,8,0,0" />
+    <WrapPanel>
+      <TextBox Text="{Binding OutlineColor}" Width="100" AutomationProperties.Name="Outline color" />
+      <TextBox Text="{Binding OutlineThickness}" Width="70" AutomationProperties.Name="Outline thickness" />
+      <TextBox Text="{Binding BackgroundOpacity}" Width="70" AutomationProperties.Name="Background opacity" />
+    </WrapPanel>
+    <TextBlock Text="Maximum lines / characters / width ratio (0.1–1)" Margin="0,8,0,0" />
+    <WrapPanel>
+      <TextBox Text="{Binding MaximumLines}" Width="70" AutomationProperties.Name="Maximum subtitle lines" />
+      <TextBox Text="{Binding MaximumCharacters}" Width="90" AutomationProperties.Name="Maximum subtitle characters" />
+      <TextBox Text="{Binding MaximumWidthRatio}" Width="70" AutomationProperties.Name="Maximum subtitle width ratio" />
+    </WrapPanel>
+    <TextBlock Text="Anchor / alignment / X offset / Y offset (DIPs)" Margin="0,8,0,0" />
+    <WrapPanel>
+      <ComboBox ItemsSource="{Binding Anchors}" SelectedItem="{Binding Anchor}" Width="90" AutomationProperties.Name="Subtitle anchor" />
+      <ComboBox ItemsSource="{Binding Alignments}" SelectedItem="{Binding Alignment}" Width="90" AutomationProperties.Name="Subtitle alignment" />
+      <TextBox Text="{Binding HorizontalOffsetDips}" Width="65" AutomationProperties.Name="Horizontal offset" />
+      <TextBox Text="{Binding VerticalOffsetDips}" Width="65" AutomationProperties.Name="Vertical offset" />
+    </WrapPanel>
+    <WrapPanel Margin="0,8">
+      <Button Content="Load overlay settings" Command="{Binding LoadCommand}" Margin="0,0,8,0" />
+      <Button Content="Save overlay settings" Command="{Binding SaveCommand}" />
+    </WrapPanel>
+    <TextBlock Text="{Binding Status}" TextWrapping="Wrap" />
+  </StackPanel>
+</UserControl>

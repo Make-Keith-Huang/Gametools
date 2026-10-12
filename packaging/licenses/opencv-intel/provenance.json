@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "component": "OpenCV Intel IPP/IW archive and ITT source notices",
+  "version": "IPP 2022.2.0; ITT from OpenCV fe38fc608f6acb8b68953438a62305d8318f4fcd",
+  "archiveSource": "https://raw.githubusercontent.com/opencv/opencv_3rdparty/c934a2a15a6df020446ac3dfa07e3acf72b63a8f/ippicv/ippicv_2022.2.0_win_intel64_20250730_general.zip",
+  "archiveSha256": "56C7BADA1067982AFD5DD43636F8A9B5A5B80447EC452B754252168CDE9D8BE8",
+  "archiveBytes": 29247105,
+  "evidence": "IPP archive pinned by OpenCV CMake and matching upstream MD5; SHA-256 recorded. Actual DLL build info reports IPP/IW 2022.2.0. ITT source files declare GPL-2.0-only OR BSD-3-Clause. Not an exact static-link or build reproduction attestation.",
+  "textNormalization": "CRLF to LF; final LF. EULA-readable derived from complete preserved RTF using Windows RichTextBox plain text, not an excerpt.",
+  "nativeFiles": {
+    "OpenCvSharpExtern.dll": "1FA122BDB8E94175E7719FB8AA8F2AB211268A756F5D0C7A13C710ED79AE30CD"
+  },
+  "notices": [
+    {
+      "file": "opencv-itt-BSD-3-Clause.txt",
+      "source": "https://raw.githubusercontent.com/opencv/opencv/fe38fc608f6acb8b68953438a62305d8318f4fcd/3rdparty/ittnotify/src/ittnotify/BSD-3-Clause.txt",
+      "bytes": 1485,
+      "sha256": "CF48CDD9ED87C2031B68FB1B9F4CFB55D00DCF815B21A30BF8304AA1E5E6F76A"
+    },
+    {
+      "file": "opencv-itt-GPL-2.0-only.txt",
+      "source": "https://raw.githubusercontent.com/opencv/opencv/fe38fc608f6acb8b68953438a62305d8318f4fcd/3rdparty/ittnotify/src/ittnotify/GPL-2.0-only.txt",
+      "bytes": 17599,
+      "sha256": "CBE0F9505C5CA02EE34BFCA453DF31A98E31E6D56AFCDF8AB0F87F4C94F1181B"
+    },
+    {
+      "source": "https://raw.githubusercontent.com/opencv/opencv_3rdparty/c934a2a15a6df020446ac3dfa07e3acf72b63a8f/ippicv/ippicv_2022.2.0_win_intel64_20250730_general.zip",
+      "entry": "ippicv_win/EULA.rtf",
+      "file": "opencv-ipp-ippicv_win-EULA.rtf.txt",
+      "bytes": 68077,
+      "sha256": "6D73AD66E9F61A3B23AFF62E5E564FCCDAE56C9DE73835C7B3FCCDCC80CD3FC6"
+    },
+    {
+      "source": "https://raw.githubusercontent.com/opencv/opencv_3rdparty/c934a2a15a6df020446ac3dfa07e3acf72b63a8f/ippicv/ippicv_2022.2.0_win_intel64_20250730_general.zip",
+      "entry": "ippicv_win/third-party-programs.txt",
+      "file": "opencv-ipp-ippicv_win-third-party-programs.txt.txt",
+      "bytes": 280,
+      "sha256": "B152440A991ACC082E1E02740A399E294E0C3D1A55DFE9D318E399A16A892120"
+    },
+    {
+      "file": "opencv-ipp-2022.2.0-EULA-readable.txt",
+      "bytes": 4208,
+      "sha256": "CB6E11F1B27620DF63F3B4B0F1BD284A19897566BA5F3B06109BF4CAC19A4199",
+      "source": "https://raw.githubusercontent.com/opencv/opencv_3rdparty/c934a2a15a6df020446ac3dfa07e3acf72b63a8f/ippicv/ippicv_2022.2.0_win_intel64_20250730_general.zip",
+      "derivedFrom": "opencv-ipp-ippicv_win-EULA.rtf.txt"
+    }
+  ],
+  "remainingNativeAttributionComplete": false
+}

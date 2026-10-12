@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "component": "SQLite and SQLitePCLRaw",
+  "version": "SQLite 3.53.3; wrapper 2.1.12",
+  "sourceCommit": "SQLitePCLRaw ca835d21508bff43121c65081035840ac5006c4c",
+  "sqliteSourceId": "2026-06-26 20:14:12 d4c0e51e4aeb96955b99185ab9cde75c339e2c29c3f3f12428d364a10d782c62",
+  "sourceArchive": "https://www.sqlite.org/2026/sqlite-amalgamation-3530300.zip",
+  "archiveSha256": "646421E12AAC110282EF8CC68F1A62D4BB15FC7B8F09DA0B53E29EE690500431",
+  "evidence": "Published library version/source ID queried without a database; both matched official sqlite3.h. Not a reproducible-build attestation.",
+  "textNormalization": "CRLF to LF; add a final LF when absent",
+  "nativeFiles": {
+    "e_sqlite3.dll": "B7385D722C83FB52142A00477A726723745916D22A555711EE89834C1111FB2E"
+  },
+  "notices": [
+    {
+      "file": "sqlitepclraw-2.1.12-license.txt",
+      "source": "https://raw.githubusercontent.com/ericsink/SQLitePCL.raw/ca835d21508bff43121c65081035840ac5006c4c/LICENSE.TXT",
+      "sha256": "CFC7749B96F63BD31C3C42B5C471BF756814053E847C10F3EB003417BC523D30",
+      "bytes": 11358
+    },
+    {
+      "file": "sqlitepclraw-2.1.12-notice.txt",
+      "source": "https://raw.githubusercontent.com/ericsink/SQLitePCL.raw/ca835d21508bff43121c65081035840ac5006c4c/NOTICE.TXT",
+      "sha256": "485B276B3D2BFAA26DF348E1E5C84DF3648981E09B88531A6A53006F0705C24B",
+      "bytes": 9756
+    },
+    {
+      "file": "sqlite-3.53.3-PUBLIC-DOMAIN.txt",
+      "bytes": 1070,
+      "sha256": "D9EBE3F9AF4230610DC4983E2C2FAFB9CC5C5F0514049FEA3838AE9558C9EA82",
+      "source": "https://sqlite.org/copyright.html"
+    }
+  ],
+  "remainingNativeAttributionComplete": false
+}

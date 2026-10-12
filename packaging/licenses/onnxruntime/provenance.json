@@ -1,0 +1,29 @@
+{
+  "notices": [
+    {
+      "upstreamBytes": 1094,
+      "upstreamSha256": "C250D6278F0B47A6439FB7592B08B58A55EB9F535AA49A1DB63211C3F982B674",
+      "bytes": 1073,
+      "sha256": "2F07C72751AED99790B8A4869CF2311DF85A860B22DED05FA22803587A48922C",
+      "file": "onnxruntime-1.11.1-LICENSE.txt"
+    },
+    {
+      "upstreamBytes": 247049,
+      "upstreamSha256": "63E3D759F01289C9FDD57100CDA7F6F8452352D08BFA72BC3C8E9D1E1B068843",
+      "bytes": 242272,
+      "sha256": "D3E99D1B7CA55C42637D962075EE33FCE87B4489DBCBD6AB673EC2B8B8A05F21",
+      "file": "onnxruntime-1.11.1-ThirdPartyNotices.txt.txt"
+    }
+  ],
+  "component": "ONNX Runtime",
+  "schemaVersion": 1,
+  "textNormalization": "CRLF to LF; add a final LF when absent",
+  "version": "1.11.1",
+  "archiveSha256": "1F127B9D41F445A2D03356C86C125CB79DC3E66D391872C9BABE6B444A51A93D",
+  "source": "https://github.com/microsoft/onnxruntime/releases/download/v1.11.1/onnxruntime-win-x64-1.11.1.zip",
+  "remainingNativeAttributionComplete": false,
+  "nativeFiles": {
+    "onnxruntime.dll": "24CCAA3BA9C5A79D88B3EA03B4399FE6D6D5C75B826661422C09613843B78213",
+    "onnxruntime_providers_shared.dll": "FE691536E41E7D7AC0D5C6723A9AA69CE168E03676C89C50FC5BD98158029584"
+  }
+}

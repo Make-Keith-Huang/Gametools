@@ -1,0 +1,43 @@
+name: Unsigned development package
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Automated gate (no native desktop acceptance)
+        shell: pwsh
+        run: ./scripts/verify.ps1 -DataRoot $env:GITHUB_WORKSPACE
+      - name: Build and verify unsigned MSIX
+        shell: pwsh
+        run: |
+          $sdk = Get-ChildItem 'C:/Program Files (x86)/Windows Kits/10/bin' -Directory |
+            Where-Object { $_.Name -match '^10\.0\.\d+\.0$' -and (Test-Path (Join-Path $_.FullName 'x64/makeappx.exe')) } |
+            Sort-Object { [version]$_.Name } -Descending | Select-Object -First 1
+          if (-not $sdk) { throw 'Windows SDK MakeAppx is missing.' }
+          ./scripts/package.ps1 -SdkDirectory (Join-Path $sdk.FullName 'x64') -DataRoot $env:GITHUB_WORKSPACE
+      - name: Upload internal unsigned artifacts (not a release)
+        uses: actions/upload-artifact@v4
+        with:
+          name: unsigned-development-msix
+          path: |
+            artifacts/release/*/*.msix
+            artifacts/release/*/artifact-hash.json
+            artifacts/release/*/payload-inventory.json
+            artifacts/release/*/payload/sbom.cdx.json
+            artifacts/release/*/payload/native-provenance.json
+            artifacts/release/*/payload/THIRD-PARTY-NOTICES.txt
+            artifacts/release/*/payload/release-status.json
+            artifacts/release/*/payload/model-manifest.json
+            artifacts/release/*/payload/licenses/
+          if-no-files-found: error
