@@ -79,7 +79,7 @@ $assetsFile = Join-Path $build 'obj/GameLingoAI.App/project.assets.json'
 $resolved = Get-Content -LiteralPath $assetsFile -Raw | ConvertFrom-Json -AsHashtable
 $components = [System.Collections.Generic.List[object]]::new()
 $notices = [System.Collections.Generic.List[string]]::new()
-$notices.Add("GameLingoAI $Version - development package, not licensed for public redistribution yet.")
+$notices.Add("GameLingoAI $Version - development preview; third-party distribution review remains incomplete.")
 $notices.Add('NuGet license metadata follows. Native bundled dependency notices still require release review; this inventory does not certify license compliance.')
 $packages = @{}
 foreach ($entry in $resolved.libraries.GetEnumerator()) {

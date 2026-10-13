@@ -28,13 +28,25 @@ jobs:
       - name: Verify source
         shell: pwsh
         run: |
-          $previous = Join-Path $env:RUNNER_TEMP 'previous-preview-evidence'
-          gh run download 38285312873 --name portable-preview-evidence --dir $previous
-          if ($LASTEXITCODE -ne 0) { throw 'Could not retrieve original failed benchmark evidence.' }
-          Get-ChildItem $previous -Recurse -Filter '*.json' |
-            Where-Object { $_.FullName -match '[\\/]quality[\\/]' } |
-            ForEach-Object { Get-Content -LiteralPath $_.FullName -Raw }
           try { ./scripts/verify.ps1 -DataRoot $env:GITHUB_WORKSPACE }
+          catch {
+            # Owner-approved preview exception only; the benchmark and normal CI stay unchanged.
+            if ($_.Exception.Message -ne 'Synthetic benchmark failed with exit code 3.') { throw }
+            $pending = @(Get-ChildItem reports/quality -Filter 'pending-*.json')
+            if ($pending.Count -ne 1) { throw 'Cannot identify the failed benchmark evidence.' }
+            $result = Get-Content $pending[0].FullName -Raw | ConvertFrom-Json
+            if ($result.Mode -ne 'baselined-synthetic-replay' -or
+                $result.Assessment.Baseline -ne 'synthetic-40-v1-20261004' -or
+                $result.Assessment.Status -ne 'Breached' -or
+                @($result.Assessment.Failures).Count -ne 1 -or
+                $result.Assessment.Failures[0] -ne 'CpuRegression') {
+              throw 'The preview exception does not cover this failure.'
+            }
+            Write-Warning "Known preview issue: CPU $($result.Report.CpuMilliseconds) ms exceeds 500 ms. Performance acceptance FAILED."
+            # verify.ps1 stopped before this independent check; it must still pass.
+            dotnet run --project tools/GameLingoAI.QualityHarness -c Release --no-build -- soak ci reports/quality/soak-ci-current.json
+            if ($LASTEXITCODE -ne 0) { throw 'Short synthetic soak failed.' }
+          }
           finally {
             Get-ChildItem reports/quality -Filter '*.json' -ErrorAction SilentlyContinue |
               ForEach-Object { Get-Content -LiteralPath $_.FullName -Raw }

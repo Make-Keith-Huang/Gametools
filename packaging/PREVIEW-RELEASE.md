@@ -14,6 +14,7 @@ Windows x64，需要相应 VC++ 运行库、Media Foundation 与 CPU 指令集�
 ## 重要限制
 
 - **开发预发布版，未签名，不是正式验收完成的稳定版。** 不要关闭 Windows 安全检查或安装来源不明的 DLL。
+- **已知性能问题：** 云端 40 帧合成回放的 CPU 耗时两次测得 515.625 ms / 546.875 ms，超过 500 ms 门槛；性能验收未通过。项目所有者明确允许将这一单项问题保留后发布预览。原始失败记录见 [首次检查](https://github.com/Make-Keith-Huang/Gametools/actions/runs/38285312873) 和 [复核](https://github.com/Make-Keith-Huang/Gametools/actions/runs/38384470330)。不调高门槛，不将普通 CI 的失败改成通过；发布流程只允许这一项已知失败，其他检查仍阻止发布。
 - 完整干净 Windows 10/11、多屏缩放、无障碍、远程服务与长时间测试尚未全部完成。自动测试、包完整性和短时启动检查不能替代这些验收。
 - 第三方原生组件的归属/分发审查仍不完整，包括 OpenCV 非自由构建选项和 Paddle 部分静态依赖来源。这是已知未决事项；本次预览发布不宣称已解决。包内保留 LICENSE、THIRD-PARTY-NOTICES、licenses、SBOM、native-provenance 与 release-status；不将审查标记改为通过。原创代码的 MIT 不覆盖第三方条款。
 - 图片只在本地 OCR；仅在明确同意远程翻译后发送文字。模型首次响应可能较慢；不要将 data 目录作为问题附件上传。
