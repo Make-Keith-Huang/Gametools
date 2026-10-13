@@ -27,7 +27,18 @@ jobs:
           dotnet-version: 8.0.x
       - name: Verify source
         shell: pwsh
-        run: ./scripts/verify.ps1 -DataRoot $env:GITHUB_WORKSPACE
+        run: |
+          $previous = Join-Path $env:RUNNER_TEMP 'previous-preview-evidence'
+          gh run download 38285312873 --name portable-preview-evidence --dir $previous
+          if ($LASTEXITCODE -ne 0) { throw 'Could not retrieve original failed benchmark evidence.' }
+          Get-ChildItem $previous -Recurse -Filter '*.json' |
+            Where-Object { $_.FullName -match '[\\/]quality[\\/]' } |
+            ForEach-Object { Get-Content -LiteralPath $_.FullName -Raw }
+          try { ./scripts/verify.ps1 -DataRoot $env:GITHUB_WORKSPACE }
+          finally {
+            Get-ChildItem reports/quality -Filter '*.json' -ErrorAction SilentlyContinue |
+              ForEach-Object { Get-Content -LiteralPath $_.FullName -Raw }
+          }
       - name: Build and verify portable package
         shell: pwsh
         run: |
