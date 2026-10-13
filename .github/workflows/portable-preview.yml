@@ -84,12 +84,15 @@ jobs:
           $tag = 'v0.1.0.17-preview.1'
           # Creation fails rather than replacing an existing release or its assets.
           gh release create $tag $zip $hashPath --target $env:GITHUB_SHA --draft --prerelease --latest=false --title 'GameLingoAI 0.1.0.17 — Windows x64 免安装预发布版' --notes-file packaging/PREVIEW-RELEASE.md
-          $release = gh api "repos/$env:GH_REPO/releases/tags/$tag" | ConvertFrom-Json
+          # A draft's tag may not exist yet; locate it through the authenticated list.
+          $matches = @(gh api "repos/$env:GH_REPO/releases" | ConvertFrom-Json | Where-Object tag_name -eq $tag)
+          if ($matches.Count -ne 1 -or -not $matches[0].draft) { throw 'Expected exactly one matching draft.' }
+          $release = $matches[0]
           $assets = @($release.assets | Where-Object name -eq $hash.file)
           if ($assets.Count -ne 1 -or $assets[0].size -ne $hash.bytes -or $assets[0].digest -ne "sha256:$($hash.sha256.ToLowerInvariant())") {
             throw 'Uploaded asset verification failed; leave the release as a draft.'
           }
-          gh release edit $tag --draft=false --prerelease --latest=false
+          gh api --method PATCH "repos/$env:GH_REPO/releases/$($release.id)" -F draft=false -F prerelease=true -f make_latest=false
       - name: Keep bounded verification evidence
         if: always()
         uses: actions/upload-artifact@v4

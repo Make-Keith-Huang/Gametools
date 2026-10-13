@@ -1,0 +1,53 @@
+name: Finalize verified portable preview
+
+on:
+  push:
+    branches: [release/finalize-preview-0.1.0.17]
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  finalize:
+    if: github.repository == 'Make-Keith-Huang/Gametools'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - name: Verify existing draft against original build evidence and publish
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$RUNNER_TEMP"
+          gh api "repos/$GH_REPO/actions/runs/38385823813/jobs" > jobs.json
+          jq -e '[.jobs[].steps[] | select(.name == "Verify source" or .name == "Build and verify portable package")] | length == 2 and all(.conclusion == "success")' jobs.json
+          gh run download 38385823813 --name portable-preview-evidence --dir evidence
+          mapfile -t reports < <(find evidence -name portable-hash.json)
+          test "${#reports[@]}" -eq 1
+          hash_report="${reports[0]}"
+          jq -e '.file == "GameLingoAI-0.1.0.17-win-x64-preview.zip" and .verifiedEntries == 725' "$hash_report"
+          mapfile -t smoke_reports < <(find evidence/reports/app-idle -name result.json)
+          test "${#smoke_reports[@]}" -eq 1
+          jq -e '.passed and .exitCode == 0 and .forcedStop == false and .elapsedSeconds >= 30' "${smoke_reports[0]}"
+          gh api "repos/$GH_REPO/releases/411571716" > release.json
+          jq -e '.draft and .prerelease and .tag_name == "v0.1.0.17-preview.1" and .target_commitish == "8e888aa08c637428d08f302d74cb2754aec06f3a" and (.assets | length == 2)' release.json
+          name=$(jq -r .file "$hash_report")
+          expected=$(jq -r '.sha256 | ascii_downcase' "$hash_report")
+          bytes=$(jq -r .bytes "$hash_report")
+          jq -e --arg name "$name" --arg digest "sha256:$expected" --argjson bytes "$bytes" '[.assets[] | select(.name == $name and .state == "uploaded" and .digest == $digest and .size == $bytes)] | length == 1' release.json
+          asset_id=$(jq -r --arg name "$name" '.assets[] | select(.name == $name) | .id' release.json)
+          gh api -H 'Accept: application/octet-stream' "repos/$GH_REPO/releases/assets/$asset_id" > "$name"
+          printf '%s  %s\n' "$expected" "$name" | sha256sum --check
+          test "$(stat -c %s "$name")" -eq "$bytes"
+          hash_asset_id=$(jq -er '.assets[] | select(.name == "portable-hash.json" and .state == "uploaded") | .id' release.json)
+          gh api -H 'Accept: application/octet-stream' "repos/$GH_REPO/releases/assets/$hash_asset_id" > uploaded-hash.json
+          cmp "$hash_report" uploaded-hash.json
+          # Publish the original verified binary and original source commit, without rebuilding.
+          gh api --method PATCH "repos/$GH_REPO/releases/411571716" -F draft=false -F prerelease=true -f make_latest=false > published.json
+          jq -e '.draft == false and .prerelease == true and .tag_name == "v0.1.0.17-preview.1"' published.json
+          cat "$hash_report"
+          find evidence/reports/app-idle -name result.json -exec cat {} \;
+          jq -r '.html_url, .assets[].browser_download_url' published.json
